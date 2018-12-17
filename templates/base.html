@@ -1,71 +1,26 @@
-{%load static%}
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width; initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<script src="https://code.jquery.com/jquery-2.1.0.js" integrity="sha256-D6d1KSapXjq2tfZ6Ie9AYozkRHyB3fT2ys9mO2+4Wvc=" crossorigin="anonymous">
+	</script>
+	<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js" integrity="sha256-tp8VZ4Y9dg702r7D6ynzSavKSwB9zjariSZ4Snurvmw=" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/helpers/jquery.fancybox-buttons.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/helpers/jquery.fancybox-media.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/helpers/jquery.fancybox-thumbs.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js" crossorigin="anonymous"></script>
 	
-	<link rel="icon" href="{%static 'image/favicon.ico'%}" />
-	<link rel="stylesheet" type="text/css" href="{%static 'css/base.css'%}"/>
-	<link rel="stylesheet" type="text/css" href="{%static 'css/responsiv.css'%}"/>
-	<link rel="stylesheet" type="text/css" href="{%static 'css/avisos_y_eventos_descripcion.css'%}"/>
-	 
-	<link rel="stylesheet" type="text/css" href="{%static 'css/index.css'%}"/>
-	<link rel="stylesheet" type="text/css" href="{%static 'css/responsiv.css'%}"/>
-
-	
-	<script type="text/javascript" src="{%static 'js/modernizr.js'%}" ></script>
-	<script type="text/javascript" src="{%static 'js/jquery-1.11.0.min.js'%}" ></script>
-    
-	<script type="text/javascript" src="{%static 'js/jquery/jquery-2.1.0.min.js'%}"></script>
-	<script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    
-	<!-- Add mousewheel plugin (this is optional) -->
-	<script type="text/javascript" src="{%static 'fancybox/lib/jquery.mousewheel-3.0.6.pack.js'%}"></script>
-
-	<!-- Add fancyBox -->
-	<link rel="stylesheet" href="{%static 'fancybox/source/jquery.fancybox.css?v=2.1.5'%}" type="text/css" media="screen" />
-	<script type="text/javascript" src="{%static 'fancybox/source/jquery.fancybox.pack.js?v=2.1.5'%}"></script>
-
-	<!-- Optionally add helpers - button, thumbnail and/or media -->
-	<link rel="stylesheet" href="{%static 'fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5'%}" type="text/css" media="screen" />
-	<script type="text/javascript" src="{%static 'fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5'%}"></script>
-	<script type="text/javascript" src="{%static 'fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6'%}"></script>
-
-	<link rel="stylesheet" href="{%static 'fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7'%}" type="text/css" media="screen" />
-	<script type="text/javascript" src="{%static 'fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7'%}"></script>
-    <script>
-    $(document).on('ready', function(){
-
-        $('.aviso').on('click', function(event){
-            event.preventDefault();
-			$.fancybox.showLoading();
-            $.get('/portada/aviso_descripcion/', {id: $(this).attr('value')}, function(data){
-                $.fancybox({'content'	: data,
-                			'autoSize'	: true,
-    						'openEffect': 'elastic',
-							'closeEffect': 'elastic',	
-            				});
-            });
-        });
-
-        $('.evento').on('click', function(event){
-            event.preventDefault();
-			$.fancybox.showLoading();
-            $.get('/portada/evento_descripcion/', {id: $(this).attr('value')}, function(data){
-                $.fancybox({'content'	: data,
-                			'autoSize'	: true,
-    						'openEffect': 'elastic',
-							'closeEffect': 'elastic',	
-                		});
-            	}
-            	);
-        });
-    });
-    </script>
-     
-	<script type="text/javascript" src="{%static 'js/modernizr.js'%}" ></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/helpers/jquery.fancybox-buttons.css" rel="stylesheet" crossorigin="anonymous">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/helpers/jquery.fancybox-thumbs.css" rel="stylesheet" crossorigin="anonymous">
+		
 </head>
+
+
+
 {%block title%}
+
+
+
 {%endblock title%}
 {%block content%}
 {%endblock content%}
