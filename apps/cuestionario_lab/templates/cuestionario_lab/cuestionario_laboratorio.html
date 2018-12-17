@@ -7,80 +7,94 @@
 {% load static %}
 
 <div class="white-box">
-<table>
-<tbody>
-<tr><td width="5%">&nbsp;</td><td colspan="1" width="90%" align="left"><img src="{%static "imagenes/encaen2.jpg"%}"  width="50%"></td><td width="5%">&nbsp;</td></tr>
-	<tr><td width="5%">&nbsp;</td><td width="30%" align="center"><p>CALIDAD EN EL SERVICIO</p><p align="right">Folio<input type="text" placeholder="Folio"></p></td><td width="5%">&nbsp;</td>
-</tr>
-<tr>
-<td >&nbsp;</td><td colspan="1">Laboratorio<br><select style="width:75%" size="0" name="laboratorio"><option selected value="">Laboratorio</option><option value="1">Laboratorio de Fisica</option><option value="1">Laboratorio de Metales</option><option value="1">Laboratorio de Plasticos</option></select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fecha:<input type="date" placeholder="dd/mm/aa" name="fecha"></td><td></td>
-</tr>
-<tr >
-<td>&nbsp;</td><td colspan="2">Nombre del Profesor<br><select style="width:75%" size="0" name="profesor"><option selected value="">Profesor</option><option value="1">Guido Alarcon Mauricio Francisco</option><option value="1">Carmona Zedillo Alma Viridiana</option><option value="1">Perez Ramirez Jose Juan</option></select></td>
-</tr>
-<tr>
-<td>&nbsp;</td><td colspan="1">Numero de la sesión de la Práctica: &nbsp;<input type="text" placeholder="Sesion" size="60" name="prac">&nbsp; &nbsp; Horario: &nbsp;<input type="time" value="--:-- ----" name="horario">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Grupo:&nbsp;<input type="text" placeholder="Grupo" name="grupo"></td><td></td>
-</tr>
-	<tr><td width="5%">&nbsp;</td><td width="30%" colspan="1">Nombre de la sesión de la Práctica: &nbsp;<input type="text" placeholder="Nombre Practica" size="70" name="pracnom"></td><td align="right"></td>
-</tr>
-<tr><td><br><br></td>
-</tr>
-<tr>
-<td>&nbsp;</td><td colspan="2">1)	El servicio que se dio fue:</td>
-</tr>
-<tr>
-<td>&nbsp;</td><td>1a)<input type="checkbox" name="e1" value="1">Excelente&nbsp;&nbsp;&nbsp;2b)<input type="checkbox" name="b1" value="1">Bueno&nbsp;&nbsp;&nbsp;3c)<input type="checkbox" name="r1" value="1">Regular&nbsp;&nbsp;&nbsp;4d)<input type="checkbox" name="m1" value="1">Malo</td><td></td>
-</tr>
-<tr><td></td><td colspan="2">e)El servicio cumplió con el objetivo de la sesión práctica&nbsp;&nbsp;Si<input type="checkbox" name"sie">&nbsp;&nbsp;No<input type="checkbox" name"noe"></td></tr>
-<tr><td><br><br></td>
-<tr>
-<td>&nbsp;</td><td colspan="2">2) Evaluacion al Personal de Apoyo:</td>
-</tr>
-</tr>
-	<tr><td></td><td colspan="2">Nombre del Personal que atendio:<input type="text" placeholder="Nombre Personal" size="150" name"p2"></td></td></tr>
-<tr>
-<td>&nbsp;</td><td>2a) Se abrio oportunamente:&nbsp;&nbsp;Si<input type="checkbox" name="si2" value="1">&nbsp;No<input type="checkbox" name="no2" value="1">&nbsp;&nbsp;<input type="text" placeholder="¿Por que?" size="150" name"por2"><td></td>
-</tr>
+	<table>
+		<tbody>
+			<!-- comentamos la imagen -->
+			<!-- 
+			<tr>
+				<td width="5%"></td>
+				<td colspan="1" width="90%" align="left"><img src="{%static "imagenes/encaen2.jpg"%}"  width="50%"></td>
+				<td width="5%"></td>
+			</tr> -->
+			<tr>
+				<td width="5%"></td>
+				<td width="30%" align="center"><p>CALIDAD EN EL SERVICIO</p><p align="right">Folio
+					<input type="text" placeholder="Folio"></p></td><td width="5%">
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="1">Laboratorio<br>
+					<select style="width:75%" size="0" name="laboratorio"><option selected value="">Laboratorio</option><option value="1">Laboratorio de Fisica</option><option value="1">Laboratorio de Metales</option><option value="1">Laboratorio de Plasticos</option></select>Fecha:<input type="date" placeholder="dd/mm/aa" name="fecha">
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td><td colspan="2">Nombre del Profesor<br><select style="width:75%" size="0" name="profesor"><option selected value="">Profesor</option><option value="1">Guido Alarcon Mauricio Francisco</option><option value="1">Carmona Zedillo Alma Viridiana</option><option value="1">Perez Ramirez Jose Juan</option></select></td>
+			</tr>
+			<tr>
+				<td></td><td colspan="1">Numero de la sesión de la Práctica: <input type="text" placeholder="Sesion" size="60" name="prac">  Horario: <input type="time" value="--:-- ----" name="horario">Grupo:<input type="text" placeholder="Grupo" name="grupo"></td><td></td>
+			</tr>
+			<tr><td width="5%"></td><td width="30%" colspan="1">Nombre de la sesión de la Práctica: <input type="text" placeholder="Nombre Practica" size="70" name="pracnom"></td><td align="right"></td>
+			</tr>
+			<tr><td><br><br></td>
+			</tr>
+			<tr>
+				<td></td><td colspan="2">1)	El servicio que se dio fue:</td>
+			</tr>
+			<tr>
+				<td></td><td>1a)<input type="checkbox" name="e1" value="1">Excelente2b)<input type="checkbox" name="b1" value="1">Bueno3c)<input type="checkbox" name="r1" value="1">Regular4d)<input type="checkbox" name="m1" value="1">Malo</td><td></td>
+			</tr>
+			<tr><td></td><td colspan="2">e)El servicio cumplió con el objetivo de la sesión prácticaSi<input type="checkbox" name"sie">No<input type="checkbox" name"noe"></td></tr>
+			<tr><td><br><br></td>
+				<tr>
+					<td></td><td colspan="2">2) Evaluacion al Personal de Apoyo:</td>
+				</tr>
+			</tr>
+			<tr><td></td><td colspan="2">Nombre del Personal que atendio:<input type="text" placeholder="Nombre Personal" size="150" name"p2"></td></td></tr>
+			<tr>
+				<td></td><td>2a) Se abrio oportunamente:Si<input type="checkbox" name="si2" value="1">No<input type="checkbox" name="no2" value="1"><input type="text" placeholder="¿Por que?" size="150" name"por2"><td></td>
+			</tr>
 
-<tr>
-<td>&nbsp;</td><td colspan="2">2b)	Permaneció en el área durante la sesión práctica.:
-<tr><td></td><td colspan="2"><input type="text" placeholder="¿Por que?" size="150" name"porque3"></td></tr>
-<tr>
-<td>&nbsp;</td><td colspan="2">2c)	Colaboró en la realización de la sesión práctica:&nbsp;&nbsp;Si<input type="checkbox" name="si3" value="1">&nbsp;&nbsp;No<input type="checkbox" name="no3" value="1">&nbsp;&nbsp;N/A<input type="checkbox" name="no3" value="1"></td>
-</tr>
-	<tr><td></td><td colspan="2"><input type="text" placeholder="¿Por que?" size="150" name"porque4"></td></tr>
-<tr>
-<td>&nbsp;</td><td colspan="2">2d)	Entregó los equipos y materiales oportunamente:&nbsp;&nbsp;Si<input type="checkbox" name="si3" value="1">&nbsp;&nbsp;No<input type="checkbox" name="no3" value="1">&nbsp;&nbsp;N/A<input type="checkbox" name="no3" value="1"></td>
-</tr>
-<tr><td></td><td colspan="2"><input type="text" placeholder="¿Por que?" size="150" name"porque5"></td></tr>
-<tr><td><br><br></td></tr>
-	<tr>
-<td>&nbsp;</td><td colspan="2"><textarea name="comentarios" rows="10" cols="80" placeholder="3) Observaciones, Recomendaciones y Sugerencias:" ></textarea></td>
-</tr>
-<tr>
-<td>&nbsp;<br></td><td></td>
-</tr>
-	<tr><td></td><td colspan="2"><textarea name="comentarios" rows="10" cols="80" placeholder="4) Quejas:" ></textarea></td></td></tr>
-<td>&nbsp;<br></td><td></td>
-	<tr>
-<td>&nbsp;</td><td colspan="2">Firma del profesor que evalúa el servicio proporcionado</td>
-</tr>
+			<tr>
+				<td></td><td colspan="2">2b)	Permaneció en el área durante la sesión práctica.:
+					<tr><td></td><td colspan="2"><input type="text" placeholder="¿Por que?" size="150" name"porque3"></td></tr>
+					<tr>
+						<td></td><td colspan="2">2c)	Colaboró en la realización de la sesión práctica:Si<input type="checkbox" name="si3" value="1">No<input type="checkbox" name="no3" value="1">N/A<input type="checkbox" name="no3" value="1"></td>
+					</tr>
+					<tr><td></td><td colspan="2"><input type="text" placeholder="¿Por que?" size="150" name"porque4"></td></tr>
+					<tr>
+						<td></td><td colspan="2">2d)	Entregó los equipos y materiales oportunamente:Si<input type="checkbox" name="si3" value="1">No<input type="checkbox" name="no3" value="1">N/A<input type="checkbox" name="no3" value="1"></td>
+					</tr>
+					<tr><td></td><td colspan="2"><input type="text" placeholder="¿Por que?" size="150" name"porque5"></td></tr>
+					<tr><td><br><br></td></tr>
+					<tr>
+						<td></td><td colspan="2"><textarea name="comentarios" rows="10" cols="80" placeholder="3) Observaciones, Recomendaciones y Sugerencias:" ></textarea></td>
+					</tr>
+					<tr>
+						<td><br></td><td></td>
+					</tr>
+					<tr><td></td><td colspan="2"><textarea name="comentarios" rows="10" cols="80" placeholder="4) Quejas:" ></textarea></td></td></tr>
+					<td><br></td><td></td>
+					<tr>
+						<td></td><td colspan="2">Firma del profesor que evalúa el servicio proporcionado</td>
+					</tr>
 
-	<tr><td></td><td colspan="2"><input type="text" placeholder="Firma" size="150" name"porque7"></td></tr>
-<tr>
-<td>&nbsp;</td><td colspan="2"><font size="2">Nota: El profesor podrá evaluar el servicio en un solo formato si hubo varias brigadas o equipos en un grupo.<br>*Si su evaluacion es de MALO, diganos el motivo</font></td>
-</tr>
-<tr>
-<td>&nbsp;</td><td align="center"><br><br><form method="get" action="#">
+					<tr><td></td><td colspan="2"><input type="text" placeholder="Firma" size="150" name"porque7"></td></tr>
+					<tr>
+						<td></td><td colspan="2"><font size="2">Nota: El profesor podrá evaluar el servicio en un solo formato si hubo varias brigadas o equipos en un grupo.<br>*Si su evaluacion es de MALO, diganos el motivo</font></td>
+					</tr>
+					<tr>
+						<td></td><td align="center"><br><br><form method="get" action="#">
 
-<input type="submit" class="btn" value="Terminar Encuesta" />
+							<input type="submit" class="btn" value="Terminar Encuesta" />
 
-</form></td>
-</tr>
-<td>&nbsp;</td><td><font size="1"><br><br>FESA UTLA P07 P01 F04.5 </font></td><td></td>
-</tr>
-</tbody>
-</table>
-</div>
+						</form></td>
+					</tr>
+					<td></td><td><font size="1"><br><br>FESA UTLA P07 P01 F04.5 </font></td><td></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
 {%endblock%}

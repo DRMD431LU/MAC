@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-
+from .views import index
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', index),
     url(r'^lab/', include('apps.cuestionario_lab.urls')),
     url(r'^pract/', include('apps.cuestionario_pract.urls')),
 ]

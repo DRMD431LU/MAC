@@ -1,17 +1,16 @@
 from __future__ import unicode_literals
-
 from django.db import models
 from django.forms import ModelForm
 from datetime import datetime
-
 from smart_selects.db_fields import ChainedForeignKey
 
+#modelo de carrera datos estaticos
 class Carrera(models.Model):
 	clave = models.CharField(max_length=100)
 	Nombre = models.CharField(max_length=100)
 	def __str__(self):
 		return self.Nombre
-
+#id de carrera como llave foranea, de acuerdo a llave foranea filtra profesores(?)
 class Profesor(models.Model):
 	rfc = models.CharField(max_length=20, primary_key=True)
 	nombre = models.CharField(max_length=200)
@@ -30,11 +29,13 @@ class Profesor(models.Model):
 	def __str__(self):
 		return self.nombre
 
+#Horario solo contiene hora??? 
 class Horario(models.Model):
 	hora=models.TimeField()
 	def __str__(self):
 		return str(self.hora)
 
+# para los dias pasa lo mismo que con horario
 class Dias(models.Model):
 	dias=models.CharField(max_length=20,verbose_name="Día")
 	class Meta:
@@ -42,25 +43,28 @@ class Dias(models.Model):
 		verbose_name_plural = 'Días'
 	def __str__(self):
 		return str(self.dias)
-
+#generacion como entero y unico valor
 class Generacion(models.Model):
 	valor=models.IntegerField(verbose_name="Generación")
 	def __str__(self):
 		return str(self.valor)
 
+#El plan parece ser fijo tambien, ejemplo 1999 o 2016 en el caso de mac
 class Plan(models.Model):
     nombre=models.CharField(max_length=200,verbose_name="Plan")
     class Meta:
         verbose_name = 'Plan'
         verbose_name_plural = 'Planes'
 
-
+#El turno cuenta con clave primaria(?) 
 class Turno(models.Model):
 	clave=models.IntegerField(primary_key=True)
 	valor = models.CharField(max_length=100,verbose_name="Turno")
 	def __str__(self):
 		return self.valor
 
+#la clase alumno se relaciona con generacion y carrera, por lo que no seria necesario mostrar esas dos clases en el formulario??
+#alumno no se conecta con alguna otra clase (de momento)
 class Alumno(models.Model):
     num_cuenta = models.CharField(max_length=20,primary_key=True)
     nombre = models.CharField(max_length=200)
@@ -76,6 +80,7 @@ class Alumno(models.Model):
 
 #perfil de Laboratorista, Jefe de Sección, Secretario técnico, Administrador. mismo perfil que profesor.
 #para jefe de Sección agregar materias que pertenecen al jefe de sección y laboratorios como espacio físico que pertenecen a el.
+
 
 class Laboratorio(models.Model):
 	nombre = models.CharField(max_length=200)
