@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration:none; 
+}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,nav,section,div{ 
+    display:block;
+}
+
+section#index{
+    width: 100%;
+    text-align: center;
+    padding-top: 35px;
+}
+
+nav#menuizq{
+    background: rgba(0,0,0,.7);
+    width: 210px;
+    font-size: 1.22em;
+    text-align: left;
+    border-radius: 2px 20px 20px 2px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+nav#menuizq li{
+    padding: 5px 25px;
+}
+
+nav#menuizq li:hover {
+    background-color: rgba(128, 128, 128,.7);
+    transition: all .3s linear;
+    border-radius: 20px;
+}
+
+nav#menuizq li:hover ul{
+    display: block;
+}
+
+nav#menuizq li a{
+    color:#FFFFFF;
+    text-shadow: 1px 1px 1px #000000;   
+}
+
+nav#menuizq li > ul{
+    background: rgba(0,0,0,.7);
+    left: 219px;
+    margin: -25px 0px 0px 5px;
+    border-radius: 0px 20px 20px 0px;
+    padding: 5px 0px;
+    font-size: .9em;
+    width: 170px;
+    display: none;
+    position: absolute;
+}
+
+nav#menuizq li > ul > li:hover{
+    border-radius: 20px 20px 20px 20px;
+}
+
+article#avisos{
+    background: rgba(0, 43, 122,.8);
+    width: 480px;
+    float: right;
+    color:#FFFFFF;
+    font: 11px Verdana,"DejaVu Sans","Bitstream Vera Sans",sans-serif;
+    border-radius: 10px;
+    margin-right: 45px;
+}
+
+div#fondo{
+    background: #FFFFFF url("../image/circuito.png");
+    width: 100%;
+    padding: 30px 0px 0px 0px;
+}
+
+#eventosi{
+    background-color: rgba(0, 43, 122,.8);
+    width: 55%;
+    margin: 0 auto;
+    color:#FFFFFF;
+    border-radius: 15px;
+    padding-bottom: 1px;
+}
+
+h2.tituloAE{
+    padding-bottom: 7px;
+    padding-top: 7px;
+    border-bottom: groove 2px rgba(0,0,0,.3);
+    text-shadow: 1.1px 1.1px 1.1px #000000;
+    font: 1.5em Verdana,"DejaVu Sans","Bitstream Vera Sans",sans-serif;
+}
+
+h4{
+    margin: 30px;
+    text-shadow: 1px 1px 1px #000000;
+    font: 11px Verdana,"DejaVu Sans","Bitstream Vera Sans",sans-serif;
+}
+
+h3 , h3 a{
+    margin: 10px 0px 5px 10px;
+    text-align: left;
+    color:#FFFFFF;
+    font: 13.3px Verdana,"DejaVu Sans","Bitstream Vera Sans",sans-serif;
+
+}
+
+.descripcion{
+    margin: 0px 0px 5px 20px;
+    font-size: 11px;
+    text-align: left;
+    color: rgba(255,255,255,.5);
+}
+
+.control{
+    background-image: -webkit-gradient(linear,left top,
+    left bottom,color-stop(0.52, #EFCA45),color-stop(1, #CEA510));
+    background-image: -o-linear-gradient(bottom, #EFCA45 52%, #CEA510 100%);
+    background-image: -moz-linear-gradient(bottom, #EFCA45 52%, #CEA510 100%);
+    background-image: -webkit-linear-gradient(bottom, #EFCA45 52%, #CEA510 100%);
+    background-image: -ms-linear-gradient(bottom, #EFCA45 52%, #CEA510 100%);
+    background-image: linear-gradient(to bottom, #EFCA45 52%, #CEA510 100%);
+    width: 20%;
+    margin-left: 40%;
+    margin-bottom: 10px; 
+    padding: 7px;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.celdaMenuIzq{
+    padding-left: 12px;
+    padding-bottom: 35px;
+    valign: top;
+    vertical-align: top;
+}
+
+.celdaAvisos{
+    vertical-align: top;
+}
+
+
+
+
+
