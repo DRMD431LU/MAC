@@ -19,6 +19,6 @@ from .views import index
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index),
-    url(r'^lab/', include('apps.cuestionario_lab.urls')),
-    url(r'^pract/', include('apps.cuestionario_pract.urls')),
+    url(r'^lab/', include('apps.cuestionario_lab.urls',namespace="lab",app_name="cuestionario_lab")),
+    url(r'^pract/', include('apps.cuestionario_pract.urls',namespace="pract",app_name="cuestionario_pract")),
 ]
