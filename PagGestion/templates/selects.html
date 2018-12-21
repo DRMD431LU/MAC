@@ -1,0 +1,195 @@
+<script>
+///script de los dropdowns
+       $("#id_carrera").on("change", getMateria);
+       $("#id_materia").on("change", getProfesor);
+       $("#id_profesor").on("change", getGrupo);
+       $("#id_grupo").on("change", getPractica);
+       $("#id_carrera_laboratorio").on("change", getLaboratorio);
+       $("#id_fecha_practica").bind("change paste keyup",getHoras);
+       $("#id_hora_ini").on("change", getHoraFin);
+
+       function getMateria() {
+           var carreraId = $("#id_carrera").val();
+           $("#id_materia").html("");
+           if (carreraId) {
+               // Eliminamos las opciones anteriores del select
+
+               var request = $.ajax({
+                   type: "GET",
+                   url: "{% url 'PagGestion:get_materia' %}",
+                   data: {
+                       "id_carrera": carreraId,
+                   },
+               });
+               request.done(function(response) {
+                   // Agregamos los resultados al select
+                   $("#id_materia").html(response.materias);
+                   $("#id_materia").trigger("change");
+               });
+           } else {
+
+               $("#id_materia").html("<option value='' selected='selected'>(Selecciona una Materia)</option>");
+               $("#id_materia").trigger("change");
+           }
+       }
+
+       function getProfesor() {
+           var carreraId = $("#id_carrera").val();
+           var materiaId = $("#id_materia").val();
+           $("#id_profesor").html("");
+           if (carreraId && materiaId) {
+               // Eliminamos las opciones anteriores del select
+
+               var request = $.ajax({
+                   type: "GET",
+                   url: "{% url 'PagGestion:get_profesor' %}",
+                   data: {
+                       "id_carrera": carreraId,
+                       "id_materia": materiaId,
+                   },
+               });
+               request.done(function(response) {
+                   // Agregamos los resultados al select
+
+                   $("#id_profesor").html(response.profesores);
+                   $("#id_profesor").trigger("change");
+               });
+           } else {
+               $("#id_profesor").html("<option value='' selected='selected'>(Selecciona un Profesor)</option>");
+               $("#id_profesor").trigger("change");
+           }
+       }
+       function getGrupo() {
+           var carreraId = $("#id_carrera").val();
+           var materiaId = $("#id_materia").val();
+           var profesorId= $("#id_profesor").val();
+           if (carreraId && materiaId && profesorId) {
+               // Eliminamos las opciones anteriores del select
+               $("#id_grupo").html("");
+               var request = $.ajax({
+                   type: "GET",
+                   url: "{% url 'PagGestion:get_grupo' %}",
+                   data: {
+                       "id_carrera": carreraId,
+                       "id_materia": materiaId,
+                       "id_profesor":profesorId,
+                       "todos":0,
+                   },
+               });
+               request.done(function(response) {
+                   // Agregamos los resultados al select
+                  //
+                   $("#id_grupo").html(response.grupos);
+                   $("#id_grupo").trigger("change");
+               });
+           } else {
+               $("#id_grupo").html("<option value='' selected='selected'>(Selecciona un Grupo)</option>");
+               $("#id_grupo").trigger("change");
+           }
+       }
+
+
+       function getPractica() {
+           var carreraId = $("#id_carrera").val();
+           var materiaId = $("#id_materia").val();
+           var profesorId= $("#id_profesor").val();
+           var grupoId= $("#id_grupo").val
+           if (carreraId && materiaId && profesorId && grupoId) {
+               // Eliminamos las opciones anteriores del select
+               $("#id_practica").html("");
+               var request = $.ajax({
+                   type: "GET",
+                   url: "{% url 'PagGestion:get_practica' %}",
+                   data: {
+                       "id_carrera": carreraId,
+                       "id_materia": materiaId,
+                       "id_profesor":profesorId,
+                       "id_grupo":grupoId,
+                   },
+               });
+               request.done(function(response) {
+                   // Agregamos los resultados al select
+                   $("#id_practica").html(response.practicas);
+                   $("#id_practica").trigger("change");
+               });
+           } else {
+               $("#id_practica").html("<option value='' selected='selected'>(Selecciona una Práctica)</option>");
+               $("#id_practica").trigger("change");
+           }
+       }
+
+       function getLaboratorio() {
+           var carreraLId = $("#id_carrera_laboratorio").val();
+           $("#id_laboratorio").html("");
+           if (carreraLId) {
+               // Eliminamos las opciones anteriores del select
+
+               var request = $.ajax({
+                   type: "GET",
+                   url: "{% url 'PagGestion:get_laboratorio' %}",
+                   data: {
+                       "id_carrera_laboratorio": carreraLId,
+                   },
+               });
+               request.done(function(response) {
+                   // Agregamos los resultados al select
+                   $("#id_laboratorio").html(response.laboratorios);
+                   $("#id_laboratorio").trigger("change");
+               });
+           } else {
+               $("#id_laboratorio").html("<option value='' selected='selected'>(Selecciona el aula del laboratorio)</option>");
+               $("#id_laboratorio").trigger("change");
+           }
+       }
+
+       var fecha;
+       function getHoras() {
+
+         if($("#id_fecha_practica").val()!=="" && fecha!=$("#id_fecha_practica").val() && !($("#id_fecha_practica").val()===undefined)){
+           fecha = $("#id_fecha_practica").val();
+             $("#id_hora_ini").html("");
+             $.ajax({
+                 type: "GET",
+                 url: "{% url 'PagGestion:get_horas' %}",
+                 data: {
+                   "fecha":fecha,
+                 },
+                 success:function (data) {
+                      $("#id_hora_ini").html(data.horas);
+                 },
+                 error:function (request,status,error) {
+                     var err=request.responseJSON;
+                     $("#error_hora_ini").html(err.error_hora);
+                     $("#id_hora_ini").html(data.horas);
+                     toastr.error("Sin Horarios Disponibles.","Error");
+                 },
+             });
+          }
+      }
+
+      function getHoraFin() {
+          var horaIni = $("#id_hora_ini").val();
+          var fecha=$("#id_fecha_practica").val();
+          $("#id_hora_fin").html("");
+          if (horaIni) {
+              // Eliminamos las opciones anteriores del select
+              var request = $.ajax({
+                  type: "GET",
+                  url: "{% url 'PagGestion:get_horaFin' %}",
+                  data: {
+                      "id_hora_ini": horaIni,
+                      "id_fecha_practica":fecha,
+                  },
+              });
+              request.done(function(response) {
+                  // Agregamos los resultados al select
+                  $("#id_hora_fin").html(response.horasFin);
+                  $("#id_hora_fin").trigger("change");
+              });
+          } else {
+
+              $("#id_hora_fin").html("<option value='' selected='selected'>(Selecciona el Horario de Fin de la Pŕactica)</option>");
+              $("#id_hora_fin").trigger("change");
+          }
+      }
+</script>

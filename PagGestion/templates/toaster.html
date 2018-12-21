@@ -1,0 +1,9 @@
+<script>
+  toastr.options.showMethod = 'slideDown';
+  toastr.options.hideMethod = 'slideUp';
+  toastr.options.closeMethod = 'slideUp';
+  toastr.options.closeButton = true;
+  {% for message in messages %}
+    toastr.{{ message.tags }}("{{message}}");
+  {% endfor %}
+</script>

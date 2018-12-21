@@ -1,0 +1,79 @@
+<script>
+$('#reagendar.open-Modal').on('click', function(e) {
+     var id = $(this).data("id");
+     $.ajax({
+         type: "GET",
+         url: "{% url 'PagGestion:obtener_practica' %}",
+         data: {
+           "id":id,
+         },
+         success:function (data) {
+             toastr.info("Edición de Práctica","Editar Práctica");
+             $.when($(".modal-body #id_carrera2").val(data.carrera)).then(function () {
+               getMateria2().then(function () {
+                 $.when($(".modal-body #id_materia2").val(data.materia)).then(function () {
+                   getProfesor2().then(function () {
+                     $.when($(".modal-body #id_profesor2").val(data.profesor)).then(function () {
+                       getGrupo2().then(function () {
+                         $.when($(".modal-body #id_grupo2").val(data.grupo)).then(function () {
+                           getPractica2().then(function () {
+                             $(".modal-body #id_practica2").val(data.practica);
+                           });
+                         });
+                       });
+                     });
+                   });
+                 });
+               });
+             });
+             $.when($(".modal-body #id_carrera_laboratorio2").val(data.carrera_laboratorio)).then(function () {
+               getLaboratorio2().then(function () {
+                 $(".modal-body #id_laboratorio2").val(data.laboratorio);
+               });
+             });
+             $.when($(".modal-body #id_fecha_practica2").val(data.fecha)).then(function () {
+               getHoras2().then(function () {
+                 $.when($(".modal-body #id_hora_ini2").val(data.hora_ini)).then(function () {
+                   getHoraFin2().then(function () {
+                     $(".modal-body #id_hora_fin2").val(data.hora_fin);
+                   });
+                 });
+               });
+             });
+             $(".modal-body #pk").val(id);
+             habilitar();
+             quitarAdicionales();
+             diasBloqueados();
+             diasInicioFin()
+         },
+         error:function (request,status,error) {
+             var err=request.responseJSON;
+             $("#error_practica").html(err.error_practica);
+             console.log("Error");
+             console.log(err,error);
+             toastr.error(err.error,"Error");
+         },
+     });
+
+  });
+
+  function quitarAdicionales() {
+    $(".modal-body #id_fecha_practica_final").removeAttr("name");
+    $(".modal-body #id_hora_ini_final").removeAttr("name");
+    $(".modal-body #id_hora_fin_final").removeAttr("name");
+    $(".modal-body #id_fecha_practica_final").removeAttr("required");
+    $(".modal-body #id_hora_ini_final").removeAttr("required");
+    $(".modal-body #id_hora_fin_final").removeAttr("required");
+    $(".modal-body #adicionales").hide();
+
+  }
+  function habilitar() {
+    $(".modal-body #id_fecha_practica2").prop('disabled', false);
+    $(".modal-body #id_hora_ini2").prop('disabled', false);
+    $(".modal-body #id_hora_fin2").prop('disabled', false);
+  }
+  $('#agendar.open-Modal').on('click', function(e) {
+      // diasBloqueados();
+      // diasInicioFin();
+  });
+</script>

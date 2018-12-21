@@ -1,0 +1,88 @@
+<script>
+  $('#Agenda').submit(function(e){
+      e.preventDefault();
+      var fields=$(this).serialize();
+
+      $.ajax({
+          type: "POST",
+          url: "{% url 'PagGestion:agendar_practica' %}",
+          data: fields,
+          success:function (data) {
+              toastr.success("Práctica Cargada","Éxito");
+              setTimeout(function() {
+                  location.reload();
+              }, 800);
+
+          },
+          error:function (request,status,error) {
+              var err=request.responseJSON;
+              console.log("Error");
+              console.log(err,error);
+              toastr.error(err.error,"Error");
+          },
+      });
+
+  });
+
+
+    $("#reagenda").on("submit",function(e){
+      e.preventDefault();
+      $(".modal-body #id_grupo2").prop('disabled', false);
+      $(".modal-body #id_laboratorio2").prop('disabled', false);
+      $(".modal-body #id_practica2").prop('disabled', false);
+      habilitar();
+      var fields=$(this).serialize();
+      deshabilitar();
+      $(".modal-body #id_grupo2").prop('disabled', true);
+      $(".modal-body #id_laboratorio2").prop('disabled', true);
+      $(".modal-body #id_practica2").prop('disabled', true);
+      //falta agregar validación para encontrar si se debe reagendar inmediatamente o al final
+      //validar que no pegue para reagendamiento y si pega preguntar
+      //console.log(fields);
+      $.ajax({
+          type: "POST",
+          url: "{% url 'PagGestion:reagendar_practica' %}",
+          data: fields,
+          success:function (data) {
+              toastr.success(data.mensaje,"Éxito");
+              setTimeout(function() {
+                  location.reload();
+              }, 800);
+
+          },
+          error:function (request,status,error) {
+              var err=request.responseJSON;
+              console.log("Error");
+              console.log(err,error);
+
+              if(err.predecesora){
+                alert("Proporciona la fecha de la última práctica!")
+                $('#calendario-reagendar input').datepicker('setStartDate',err.fecha);
+                mostrarAdicionales();
+                toastr.error(err.predecesora,"Error");
+              }else{
+                habilitar();
+                toastr.error(err.error,"Error");
+              }
+          },
+      });
+    });
+
+    function mostrarAdicionales() {
+      $(".modal-body #adicionales").show();
+      $(".modal-body #id_fecha_practica_final").attr("name","fecha_practica_final");
+      $(".modal-body #id_hora_ini_final").attr("name","hora_ini_final");
+      $(".modal-body #id_hora_fin_final").attr("name","hora_fin_final");
+      $(".modal-body #id_fecha_practica_final").attr("required");
+      $(".modal-body #id_hora_ini_final").attr("required");
+      $(".modal-body #id_hora_fin_final").attr("required");
+      deshabilitar();
+
+    }
+    function deshabilitar(){
+
+      $(".modal-body #id_fecha_practica2").prop('disabled', true);
+      $(".modal-body #id_hora_ini2").prop('disabled', true);
+      $(".modal-body #id_hora_fin2").prop('disabled', true);
+    }
+</script>

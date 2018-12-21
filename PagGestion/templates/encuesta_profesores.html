@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Encuesta de Profesores{% endblock %}
+
+    {% block content %}
+
+	        <div class="white-box">
+	              <h3 class="box-title m-b-0">Consulta de Encuestas Profesores</h3>
+	              <p class="text-muted m-b-30">Con opción de Extraer en Portapapeles, CSV, Excel, y PDF</p>
+	              <div class="table-responsive">
+	                  <table id="example23" class="display nowrap" cellspacing="0" width="100%">
+	                                <thead>
+	                                    <tr class="bg-theme-dark">
+
+	                                        <th><span> Acc.</span></th>
+
+	                                        <th class="print-col"><span title="folio">No. Folio</span></th>
+	                                        <th class="print-col"><span title="RFC">RFC Profesor</span></th>
+	                                        <th class="print-col"><span title="practica">No. Práctica</span></th>
+	                                        <th class="print-col"><span title="hora">Hora</span></th>
+	                                        <th class="print-col"><span title="fecha">Fecha</span></th>
+	                                        <th class="print-col"><span title="laboratorio">Laboratorio</span></th>
+	                                        <th class="print-col"><span title="Profesor">Profesor</span></th>
+	                                        <th class="print-col"><span title="turno">Turno</span></th>
+
+	                                        <th class="print-col"><span title="grupo">Grupo</span></th>
+
+
+	                                    </tr>
+	                                </thead>
+	                                 <tfoot>
+	                                      <tr class="bg-theme-dark">
+
+	                                        <th><span> Acc.</span></th>
+
+	                                        <th class="print-col"><span title="folio">No. Folio</span></th>
+	                                        <th class="print-col"><span title="RFC">RFC Profesor</span></th>
+	                                        <th class="print-col"><span title="practica">No. Práctica</span></th>
+	                                        <th class="print-col"><span title="hora">Hora</span></th>
+	                                        <th class="print-col"><span title="fecha">Fecha</span></th>
+	                                        <th class="print-col"><span title="laboratorio">Laboratorio</span></th>
+	                                        <th class="print-col"><span title="Profesor">Profesor</span></th>
+	                                        <th class="print-col"><span title="turno">Turno</span></th>
+	                                        <th class="print-col"><span title="grupo">Grupo</span></th>
+	                                    </tr>
+	                                    </tfoot>
+	                          <tbody>
+	                                  {%for v in results%}
+	                                      <tr>
+	                                         <td>
+	                                             <a href="" onclick="return false;" class="text-inverse p-r-10" data-toggle="tooltip" title="" data-original-title="Mostrar Formato"><i class="ti-layers"></i></a>
+	                                         </td>
+	                                          <td >{{v.num_folio}}</td>
+	                                          <td >{{ v.rfc_laboratorio_horario }}</td>
+	                                          <td >{{ v.num_practica }}</td>
+	                                          <td >{{ v.hora }}</td>
+	                                          <td >{{ v.fecha }}</td>
+	                                          <td >{{ v.laboratorio }}</td>
+	                                          <td>{{ v.nombre_profesor }}</td>
+	                                          <td>{{ v.turno }}</td>
+	                                          <td>{{ v.grupo}}</td>
+	                                      </tr>
+
+	                                  {%endfor%}
+
+	                          </tbody>
+	                  </table>
+	              </div>
+	            </div>
+
+							{% endblock %}
+
+							{% block js %}
+								{{ block.super }}
+								{% load static %}
+								<script type="text/javascript" src="{% static "js/datatablesConfig.js"%}"></script>
+							{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Agendamiento de Prácticas{% endblock %}
+
+    {% block content %}
+
+    {% load static %}
+
+    <h2>Instrucciones de Carga de Datos</h2>
+
+    <dl>
+      <ol>
+        <li><dt>Accesar al administrado de Sistema.</dt>
+            <dd>- <a href="{% url 'admin:index' %}">Sitio de Administración.</a></dd>
+        </li>
+        <li><dt>Cargar Pre información.</dt>
+            <dd>
+                <ul>
+                    <li>
+                      Cargar Periodo y marcar como activo.
+                    </li>
+                    <li>
+                      Cargar Planes de estudio.
+                    </li>
+                    <li>
+                      Cargar Laboratorios (espacios físicos).
+                    </li>
+                    <li>
+                      Cargar Laboratoristas.
+                    </li>
+                    <li>
+                      Jefes de Sección.
+                    </li>
+                    <li>
+                      Jefe(s) de Laboratoristas.
+                    </li>
+                    <li>
+                      Materias de Jefes de Seccón (Jefe_materias).
+                    </li>
+                    <li>
+                      Prácticas.
+                    </li>
+                </ul>
+            </dd>
+        </li>
+        <li><dt><a href="{% url 'PagGestion:importar_Profesores' %}">Cargar Archivo de Profesores.</a></dt>
+            <dd>- <a href="{% static "ejemplos/Ingeniería_Civil_Profesores.csv"%}">Archivo Ejemplo.</a>
+               Respetar la estructura, columnas y sus nombres y los tipos y formatos de los datos.
+             </dd>
+        </li>
+        <li><dt><a href="{% url 'PagGestion:importar_horarios' %}">Cargar Archivo de Alumnos.</a></dt>
+            <dd>- <a href="{% static "ejemplos/Ingeniería_Civil_Alumnos.csv"%}">Archivo Ejemplo.</a>
+               Respetar la estructura, columnas y sus nombres y los tipos y formatos de los datos.
+             </dd>
+        </li>
+
+        <li><dt><a href="{% url 'PagGestion:agenda_profesores' %}">Cargar Archivo de Prácticas desde Excel.</a></dt>
+            <dd>- <a href="{% static "ejemplos/Ingeniería_Civil_Prácticas.csv"%}">Archivo Ejemplo.</a>
+               Respetar la estructura, columnas y sus nombres y los tipos y formatos de los datos.
+               La carga también puede ser manual.
+             </dd>
+        </li>
+      </ol>
+    </dl>
+
+    {% endblock %}

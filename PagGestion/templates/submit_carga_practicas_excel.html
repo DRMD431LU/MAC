@@ -1,0 +1,39 @@
+<script>
+$('#CargarForm').submit(function(e){
+    var uploadButton = document.getElementById('Save');
+    uploadButton.innerHTML = 'Cargando...';
+    e.preventDefault();
+    var fd = new FormData( this );
+    $(".NCargados").html("");
+    $(".Errores").html("");
+    $.ajax({
+        url: "{% url 'PagGestion:agendar_practica_excel' %}",
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: fd, // the FormData
+        success:function (data) {
+          if (data.c>0){
+            uploadButton.innerHTML = data.c+' Cargados';
+            toastr.success("Prácticas Cargadas","Éxito");
+            $(".NCargados").html("Se cargaron "+data.c+" prácticas.")
+          }
+          if(data.mensajeCompleto!=""){
+            uploadButton.innerHTML = ' Validar Errores';
+            $(".Errores").html(data.mensajeCompleto)
+          }
+        },
+        error:function (request,status,error) {
+            var err=request.responseJSON;
+            console.log("Error");
+            console.log(err,error);
+            toastr.error(err.error,"Error");
+        },
+    });
+  });
+
+  $(".close.PExcel").on("click",function (e) {
+    location.reload(true);
+  });
+
+</script>

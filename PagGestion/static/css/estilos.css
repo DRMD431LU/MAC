@@ -1,0 +1,215 @@
+body
+{
+	font-family: Arial, Helvetica, sans-serif;
+	color: #6d6e70;
+	font-size: 12px;
+	margin: 45px;
+	background-color: #eaeaea;
+}
+
+#contenido-principal
+{
+	position: relative;
+	display: block;
+	width: 100%;
+	background-color: #fff;
+	margin: 0 auto;
+	padding: 0;
+	-webkit-box-shadow: 0 7px 15px rgba(0,33,71,0.4);
+	-moz-box-shadow: 0 7px 15px rgba(0,33,71,0.4);
+	box-shadow: 0 7px 15px rgba(0,33,71,0.4);
+}
+
+header, footer, #contenido
+{
+	position: relative;
+	display: block;
+}
+
+header
+{
+	height: 50px;
+	background-color: #002147;
+}
+
+footer
+{
+	height: 33px;
+	background-color: #002147;
+}
+
+nav
+{
+	position: relative;
+	display: inline-block;
+	background-color: #002147;
+	height: 50px;
+}
+
+nav ul{
+	padding:0;
+}
+
+nav li{
+	float: left;
+	display: inline;
+	position: relative;
+  list-style-type: none;
+}
+
+nav li ul{
+	/*float: left;*/
+	position:absolute;
+   display:none;
+}
+
+nav ul li:hover>ul{
+	z-index: 1;
+	display: block;
+	background-color: #002147;
+}
+
+nav a{
+	position: relative;
+	display: block;
+	color: #fff;
+	font-size: 12px;
+	text-decoration: none;
+	padding: 10px;
+	margin: 5px 2px;
+
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+nav a:hover
+{
+	color: #404041;
+	background-color: #fff;
+  text-decoration: none;
+}
+
+nav #logo
+{
+	margin: 0;
+	height: 50px;
+	background-color: #fff;
+	width: 196px;
+	vertical-align: top;
+	background-image: url(../imagenes/logo.png);
+  background-size: 100%;
+	padding: 0;
+	background-repeat: no-repeat;
+	background-position: center;
+	text-indent: 500px;
+	overflow: hidden;
+	margin-right: 30px;
+	-webkit-box-shadow: 0 7px 15px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0 7px 15px rgba(0,0,0,0.4);
+	box-shadow: 0 7px 15px rgba(0,0,0,0.4);
+	z-index: 0.9;
+}
+
+#contenido
+{
+	position: relative;
+	display: block;
+	width: 100%;
+	padding: 20px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+  /*overflow: auto;*/
+}
+
+footer > div
+{
+	position: relative;
+	display: inline-block;
+	color: #fff;
+	background-color: #404041;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 8px 35px 5px;
+	margin: 0;
+}
+
+#contenido .white-box{
+  position: relative;
+  display: block;
+  width: 100%;
+	margin-bottom: 0;
+}
+
+table#example23{
+  position: relative;
+  display: block;
+  overflow-y: auto;
+}
+
+button,a.dt-button,.btn {
+	position: relative;
+	display: inline-block;
+	padding: 4px;
+	margin: 1px 3px;
+	text-align: center;
+	background-color: #fff;
+	text-transform: uppercase;
+	border:none;
+	color: #666;
+	font-weight: bold;
+	-webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+	box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-transition: box-shadow 0.5s ease;
+	-moz-transition: box-shadow 0.5s ease;
+	transition: box-shadow 0.5s ease;
+
+}
+
+button{
+	margin: 10px 3px;
+}
+
+button:hover,a.dt-button:hover,.btn:hover {
+	padding: 3px;
+	-webkit-box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+	box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+	color: #2a86d6;
+	border: 1px solid rgba(0,0,0,0.25);
+}
+
+table.dataTable thead .sorting::after,
+table.dataTable thead .sorting_desc::after,
+table.dataTable thead .sorting_asc::after {
+	content:"";
+}
+
+div#botonera {
+	position: relative;
+	display: block;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+div#botonera button{
+	position: relative;
+	display: inline-block;
+}
+
+p.NCargados{
+	font-weight: bold;
+	font-size: 16px;
+	color:green;
+}
+
+p.Errores{
+	font-weight: bold;
+	font-size: 16px;
+	color:red;
+}

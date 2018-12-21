@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}Agendamiento de Prácticas{% endblock %}
+
+    {% block content %}
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-12">
+
+            <!-- Menú -->
+            <div class="col-md-3 col-sm-5 menu">
+              <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menú</span>
+              <div id="mySidenav" class="sidenav">
+                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                  <li class="dropdown" id="menu_izq_drop">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                      Opc1 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" >
+                        <a href="{%url 'lab:index'%}" class="btn"> Laboratorio</a> <br/>
+                        <a href="{%url 'pract:index'%}" class="btn"> Practicas</a>
+                      <a href="#" class="dropdown_item">Opc1.3</a>
+                      <a href="#" class="dropdown_item">Opc1.4</a>
+                      <a href="#" class="dropdown_item">Opc1.5</a>
+                      <a href="#" class="dropdown_item">Opc1.6</a>
+                    </ul>
+                  </li>
+                  <a href="#">Opc2</a>
+                  <a href="#">Opc3</a>
+                  <a href="#">Opc4</a>
+              </div>
+            </div>
+            <!-- Carrusel -->
+            <div class="col-md-9 col-sm-7 carusel">
+              <div class="row">
+                    <div class="flexslider">
+                        <ul class="slides">
+                          <li>
+                            <img src="slide1.jpg" />
+                            <p class="flex-caption fc-title">Titulo Aviso1</p>
+                            <p class="flex-caption">Texto Aviso1saaaaaaaaaaaaaaaaaaaaa
+                              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                              aaaaaaaaaaaaaaas
+                              <button type="button" name="button" class="Ver-mas" data-id="1"> Ver Más </button>
+                            </p>
+                          </li>
+                          <li>
+                            <img src="slide2.jpg" />
+                            <p class="flex-caption fc-title">Titulo Aviso2</p>
+                            <p class="flex-caption">Texto Aviso2
+                              <button type="button" name="button" class="Ver-mas" data-id="1"> Ver Más </button>
+                            </p>
+                          </li>
+                          <li>
+                            <img src="slide3.jpg" />
+                              <p class="flex-caption fc-title">Titulo Aviso3</p>
+                              <p class="flex-caption">Texto Aviso3
+                                  <button type="button" name="button" class="Ver-mas" data-id="1"> Ver Más</button>
+                              </p>
+                          </li>
+                        </ul>
+                      </div>
+              </div>
+
+              <div class="row">
+                <div class="text-center">
+                    <button type="button" name="button" class="Aun-mas" data-id="1">Aún Más Avisos</button>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    {% endblock %}
+
+{% block css %}
+  {{ block.super }}
+  {% load static %}
+  <link href="{% static "css/flexslider.css"%}" rel="stylesheet"/>
+  <script type="text/javascript" src="{% static "js/jquery.flexslider-min.js" %}"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(window).load(function() {
+      $('.flexslider').flexslider();
+    });
+  </script>
+  <link href="{% static "css/estilos_carrusel.css"%}" rel="stylesheet"/>
+{% endblock %}
+
+{% block js %}
+	{{ block.super }}
+	{% load static %}
+  <script type="text/javascript" src="{% static "js/jquery.flexslider-min.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/sweetalert.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/menu_lateral.js"%}"></script>
+  <script>
+    $(".Ver-mas").on('click',function () {
+      var id=$(this).data("id");
+      swal({
+        title: "Good job!",
+        text: "You clicked the button!",
+        icon: "success",
+        button: "Aww yiss!",
+      });
+    });
+  </script>
+
+{% endblock %}

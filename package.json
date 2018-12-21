@@ -1,0 +1,35 @@
+{
+  "name": "P3",
+  "version": "1.0.0",
+  "description": "Agregando Gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/sgc_utla_acatlan/sgc_utla.git"
+  },
+  "author": "JLobato",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/sgc_utla_acatlan/sgc_utla#readme",
+  "devDependencies": {
+    "bootstrap": "^4.1.1",
+    "browser-sync": "^2.24.4",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-uglify": "^3.0.0",
+    "jquery": "^3.3.1",
+    "merge-stream": "^1.0.1",
+    "popper.js": "^1.14.3",
+    "require-dir": "^1.0.0",
+    "run-sequence": "^2.2.1",
+    "sweet-modal": "^1.3.2"
+  }
+}

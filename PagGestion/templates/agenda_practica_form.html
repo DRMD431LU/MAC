@@ -1,0 +1,68 @@
+{% load widget_tweaks %}
+<div class="modal fade" id="Agendar" tabindex="-1" role="dialog" aria-labelledby="Agendar" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button id='cerrar' type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="exampleModalLabel1">Selecciona los datos de agendamiento de práctica</h4>
+        </div>
+        <div class="modal-body">
+            <form role="form" action="{% url 'PagGestion:generar_agenda' %}" method="post" id="Agenda">
+
+                  <div class="form-group">
+                    {{form.carrera|add_class:"form-control"}}
+                    <div class="text-danger" id="error_carrera"></div>
+                  </div>
+                  <div class="form-group">
+                    {{form.materia|add_class:"form-control"}}
+                    <div class="text-danger" id="error_materia"></div>
+                  </div>
+                  <div class="form-group">
+                    {{form.profesor|add_class:"form-control"}}
+                    <div class="text-danger" id="error_profesor"></div>
+                  </div>
+                  <div class="form-group">
+                    {{form.grupo|add_class:"form-control"}}
+                    <div class="text-danger" id="error_grupo"></div>
+                  </div>
+                  <div class="form-group">
+                    {{form.practica|add_class:"form-control"}}
+                    <div class="text-danger" id="error_practica"></div>
+                  </div>
+
+                  <div class="form-group">
+                    {{form.carrera_laboratorio|add_class:"form-control"}}
+                    <div class="text-danger" id="error_carrera_laboratorio"></div>
+                  </div>
+
+                  <div class="form-group">
+                    {{form.laboratorio|add_class:"form-control"}}
+                    <div class="text-danger" id="error_laboratorio"></div>
+                  </div>
+
+                  <div class="form-group">
+                        {{ form.fecha_practica.label}}:{{ form.fecha_practica|add_class:"form-control"}}
+                        <div class="text-danger" id="error_fecha_practica"></div>
+                  </div>
+
+                  <div class="form-group">
+                    {{form.hora_ini|add_class:"form-control"}}
+                    <div class="text-danger" id="error_hora_ini"></div>
+                  </div>
+
+                  <div class="form-group">
+                    {{form.hora_fin|add_class:"form-control"}}
+                    <div class="text-danger" id="error_hora_fin"></div>
+                  </div>
+
+                  {% csrf_token %}
+                  <div class="modal-footer">
+                    <button type="button" id='cerrar' class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Agendar Práctica</button>
+                  </div>
+
+            </form>
+        </div>
+      </div>
+    </div>
+</div>

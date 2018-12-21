@@ -1,0 +1,27 @@
+{% load widget_tweaks %}
+<div class="modal fade" id="Cargar" tabindex="-1" role="dialog" aria-labelledby="Cargar" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button id='cerrar' type="button" class="close PExcel" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="exampleModalLabel1">Cargar Calendario de Prácticas desde Archivo de Excel.</h4>
+        </div>
+        <div class="modal-body">
+
+          <form enctype="multipart/form-data" method="POST" id="CargarForm">
+              <label> Cargar archivo en formato de CSV.</label>
+              {% csrf_token %}
+              {{f2.f}}
+              <div class="texto_cargados">
+                  <p class="NCargados"></p>
+              </div>
+              <div class="texto_erroneos">
+                  <p class="Errores"></p>
+              </div>
+              <button type="submit" value="Submit" id="Save" data-loading-text="Cargando ...">Subir Datos</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+</div>

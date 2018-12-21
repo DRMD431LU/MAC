@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+<h2>Módulo de Carga de Profesores al Sistema de Gestión de la Calidad</h2>
+{% if first is False %}
+  <h4>Se Cargaron {{c}} Horarios de Laboratorio de Profesores</h4>
+{% endif %}
+  <form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {{form.f}}
+    <button type="submit" value="Submit" id="Save">Subir Datos</button>
+  </form>
+
+{% endblock %}

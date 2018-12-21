@@ -1,0 +1,91 @@
+{% load widget_tweaks %}
+<div class="modal fade" id="Reagendar" data-id="" tabindex="-1" role="dialog" aria-labelledby="reagendarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button id='cerrar' type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="reagendarLabel">Selecciona los datos de reagendamiento de práctica</h4>
+          <h6 style="color:red">En caso de falta de información, cerrar la ventana y dar click nuevamente en editar.</h6>
+        </div>
+        <div class="modal-body">
+
+            <form role="form" action="" method="post" id="reagenda">
+
+                  <input type="text" id="pk" name="pk" class="form-control" style="display:none">
+
+                  <div class="form-group">
+                    {{form.carrera|add_class:"form-control"|attr:"id:id_carrera2"|attr:"disabled:true"}}
+                    <div class="text-danger" id="error_carrera2"></div>
+                  </div>
+                  <div class="form-group">
+                    {{form.materia|add_class:"form-control"|attr:"id:id_materia2"|attr:"disabled:true"}}
+                    <div class="text-danger" id="error_materia2"></div>
+                  </div>
+                  <div class="form-group">
+                    {{form.profesor|add_class:"form-control"|attr:"id:id_profesor2"}}
+                    <div class="text-danger" id="error_profesor2"></div>
+                  </div>
+                  <div class="form-group">
+                    {{form.grupo|add_class:"form-control"|attr:"id:id_grupo2"|attr:"disabled:true"}}
+                    <div class="text-danger" id="error_grupo2"></div>
+                  </div>
+                  <div class="form-group">
+                    {{form.practica|add_class:"form-control"|attr:"id:id_practica2"|attr:"disabled:true"}}
+                    <div class="text-danger" id="error_practica2"></div>
+                  </div>
+
+                  <div class="form-group">
+                    {{form.carrera_laboratorio|add_class:"form-control"|attr:"id:id_carrera_laboratorio2"}}
+                    <div class="text-danger" id="error_carrera_laboratorio2"></div>
+                  </div>
+
+                  <div class="form-group">
+                    {{form.laboratorio|add_class:"form-control"|attr:"id:id_laboratorio2"}}
+                    <div class="text-danger" id="error_laboratorio2"></div>
+                  </div>
+
+                  <div class="form-group">
+                        {{ form.fecha_practica.label}}:{{ form.fecha_practica|add_class:"form-control"|attr:"id:id_fecha_practica2"}}
+                        <div class="text-danger" id="error_fecha_practica2"></div>
+                  </div>
+
+                  <div class="form-group">
+                    {{form.hora_ini|add_class:"form-control"|attr:"id:id_hora_ini2"}}
+                    <div class="text-danger" id="error_hora_ini2"></div>
+                  </div>
+
+                  <div class="form-group">
+                    {{form.hora_fin|add_class:"form-control"|attr:"id:id_hora_fin2"}}
+                    <div class="text-danger" id="error_hora_fin2"></div>
+                  </div>
+
+                  <div id="adicionales" style="display:none">
+                      <div class="form-group">
+
+                            {{ form.fecha_practica.label}} Final:{{ form.fecha_practica|add_class:"form-control"|attr:"id:id_fecha_practica_final"}}
+                            <div class="text-danger" id="error_fecha_practica_final"></div>
+
+                      </div>
+
+                      <div class="form-group">
+                        {{form.hora_ini|add_class:"form-control"|attr:"id:id_hora_ini_final"}}
+                        <div class="text-danger" id="error_hora_ini_final"></div>
+                      </div>
+
+                      <div class="form-group">
+                        {{form.hora_fin|add_class:"form-control"|attr:"id:id_hora_fin_final"}}
+                        <div class="text-danger" id="error_hora_fin_final"></div>
+                      </div>
+                    </div>
+
+                  {% csrf_token %}
+                  <div class="modal-footer">
+                    <button type="button" id='cerrar' class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Reagendar Práctica</button>
+                  </div>
+
+            </form>
+        </div>
+      </div>
+    </div>
+</div>

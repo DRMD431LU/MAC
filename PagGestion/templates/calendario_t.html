@@ -1,0 +1,56 @@
+<script>
+//   $('#calendario-agendar input').datepicker({
+//         format: "dd/mm/yyyy",
+//         //todayBtn: "linked",
+//         //startDate: "today",
+//         language: "es",
+//         daysOfWeekDisabled: "0,6",
+//         //daysOfWeekHighlighted: "1,3",
+//         autoclose: true,
+//         clearBtn: true,
+//         orientation: "top left",
+//         todayHighlight: true,
+//         datesDisabled:[],
+//   });
+//
+// $('#calendario-reagendar input').datepicker({
+//         format: "dd/mm/yyyy",
+//         //todayBtn: "linked",
+//         //startDate: "today",
+//         language: "es",
+//         daysOfWeekDisabled: "0,6",
+//         //daysOfWeekHighlighted: "1,3",
+//         autoclose: true,
+//         clearBtn: true,
+//         orientation: "top left",
+//         todayHighlight: true,
+//         datesDisabled:[],
+//   });
+//   function diasBloqueados(){
+//     var fechas="";
+//     var peticion=$.ajax({
+//         type: "GET",
+//         url: "{% url 'PagGestion:obtener_bloqueados' %}",
+//       });
+//     peticion.done(function (response) {
+//       fechas=response.dias;
+//       $('#calendario-reagendar input').datepicker('setDatesDisabled',fechas);
+//       $('#calendario-agendar input').datepicker('setDatesDisabled',fechas);
+//     });
+//   }
+//
+//   function diasInicioFin(){
+//     var peticion=$.ajax({
+//         type: "GET",
+//         url: "{% url 'PagGestion:obtener_inicioFin' %}",
+//       });
+//     peticion.done(function (response) {
+//
+//       $('#calendario-reagendar input').datepicker('setStartDate',response.inicio);
+//       $('#calendario-reagendar input').datepicker('setEndDate',response.fin);
+//       $('#calendario-agendar input').datepicker('setStartDate',response.inicio);
+//       $('#calendario-agendar input').datepicker('setEndDate',response.fin);
+//     });
+//   }
+//
+// </script>

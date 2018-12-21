@@ -1,0 +1,116 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Agendamiento de Prácticas{% endblock %}
+
+    {% block content %}
+
+    <div id="botonera">
+      <span title="Agendar" data-toggle="tooltip" data-placement="top"><a class="open-Modal" id="agendar" onclick="return false" data-id="" data-toggle="modal" data-target="#Agendar" title="Agendar" data-original-title="Agendar Práctica"><button>Agendamiento Manual de Práctica.</button></a></span>
+      {% include 'agenda_practica_form.html' %}
+      {% include 'agenda_practica_actualizar.html' %}
+      <span title="Cargar" data-toggle="tooltip" data-placement="top"><a class="open-Modal" id="cargar" onclick="return false" data-id="" data-toggle="modal" data-target="#Cargar" title="Cargar" data-original-title="Cargar Prácticas desde Excel"><button>Cargar Calendario de Prácticas desde Excel.</button></a></span>
+      {% include 'agenda_practica_excel.html' %}
+    </div>
+
+			<div class="white-box">
+						<h3 class="box-title m-b-0">Consulta de Agendamiento de Prácticas a Profesores</h3>
+						<p class="text-muted m-b-30">Con opción de Extraer en Portapapeles, CSV, Excel, y PDF</p>
+						<div class="table-responsive">
+								<table id="example23" class="display nowrap" cellspacing="0" width="100%">
+															<thead>
+																	<tr class="bg-theme-dark">
+
+																			<th><span> Acc.</span></th>
+
+																			<th class="print-col"><span title="profesor">Nombre Profesor</span></th>
+																			<th class="print-col"><span title="RFC">RFC Profesor</span></th>
+																			<th class="print-col"><span title="practica">No. Práctica</span></th>
+                                      <th class="print-col"><span title="practicaN">Nombre de la Práctica</span></th>
+ 																		 <th class="print-col"><span title="horaIni">Hora Ini</span></th>
+                                      <th class="print-col"><span title="horaFin">Hora Fin</span></th>
+																			<th class="print-col"><span title="fecha">Fecha (Y/M/D)</span></th>
+																			<th class="print-col"><span title="laboratorio">Laboratorio</span></th>
+																			<th class="print-col"><span title="grupo">Grupo</span></th>
+                                      <th class="print-col"><span title="carrera">Carrera</span></th>
+                                      <th class="print-col"><span title="reagendamientos">Reagendamientos</span></th>
+
+																	</tr>
+															</thead>
+															 <tfoot>
+																		<tr class="bg-theme-dark">
+
+																			<th><span> Acc.</span></th>
+
+																			<th class="print-col"><span title="profesor">Nombre Profesor</span></th>
+																		 <th class="print-col"><span title="RFC">RFC Profesor</span></th>
+																		 <th class="print-col"><span title="practica">No. Práctica</span></th>
+																		 <th class="print-col"><span title="practicaN">Nombre de la Práctica</span></th>
+																		 <th class="print-col"><span title="horaIni">Hora Ini</span></th>
+                                     <th class="print-col"><span title="horaFin">Hora Fin</span></th>
+																		 <th class="print-col"><span title="fecha">Fecha (Y/M/D)</span></th>
+																		 <th class="print-col"><span title="laboratorio">Laboratorio</span></th>
+																		 <th class="print-col"><span title="grupo">Grupo</span></th>
+                                     <th class="print-col"><span title="carrera">Carrera</span></th>
+                                     <th class="print-col"><span title="reagendamientos">Reagendamientos</span></th>
+																	</tr>
+																	</tfoot>
+												<tbody>
+																{% for v in result %}
+																		<tr>
+																			 <td>
+                                          <span title="Regendar" data-toggle="tooltip" data-placement="top"><a class="open-Modal" id="reagendar" onclick="return false" data-id="{{v.pk}}" data-toggle="modal" data-target="#Reagendar" title="Reagendar" data-original-title="Reagendar Práctica"><i class="ti-pencil"></i></a></span>
+                                          <span title="Eliminar" data-toggle="tooltip" data-placement="top"><a class="open-Modal" id="eliminar" onclick="return false" data-id="{{v.pk}}" data-toggle="modal" data-target="#Eliminar" title="Eliminar" data-original-title="Eliminar Práctica"><i class="ti-trash"></i></a></span>
+                                          <span title="Activar" data-toggle="tooltip" data-placement="top"><a class="open-Modal" id="activar" onclick="return false" data-id="{{v.pk}}" data-toggle="modal" data-target="#Activar" title="Activar" data-original-title="Activar Práctica"><i class="ti-thumb-up"></i></a></span>
+                                          <span title="RealizarP" data-toggle="tooltip" data-placement="top"><a class="open-Modal" id="realizarP" onclick="return false" data-id="{{v.pk}}" data-toggle="modal" data-target="#RealizarP" title="Realizar Encuesta Profesor" data-original-title="Realizar Encuesta Profesor"><i class="ti-receipt"></i></a></span>
+                                          <span title="RealizarA" data-toggle="tooltip" data-placement="top"><a class="open-Modal" id="realizarA" onclick="return false" data-id="{{v.pk}}" data-toggle="modal" data-target="#RealizarA" title="Realizar Encuesta Alumno" data-original-title="Realizar Encuesta Alumno"><i class="ti-receipt"></i></a></span>
+
+																			 </td>
+																				<td >{{ v.rfc }}</td>
+																				<td >{{ v.rfc.rfc }}</td>
+																				<td >{{ v.practica.numero }}</td>
+																				<td >{{ v.practica.nombre }}</td>
+																				<td >{{ v.hora_ini }}</td>
+																				<td >{{ v.hora_fin }}</td>
+																				<td >{{ v.fecha|date:"Y/m/d" }}</td>
+																				<td >{{ v.laboratorio }}</td>
+                                        <td >{{ v.laboratorio_horario.id_grupo.clave }}</td>
+                                        <td >{{ v.laboratorio_horario.id_grupo.id_carrera.Nombre }}</td>
+                                        <td>{{v.reagendamiento}}</td>
+																		</tr>
+
+																{%endfor%}
+
+												</tbody>
+								</table>
+
+					</div>
+			</div>
+
+
+
+
+{% endblock %}
+
+{% block js %}
+	{{ block.super }}
+	{% load static %}
+	<script type="text/javascript" src="{% static "js/datatablesConfig.js"%}"></script>
+  {% include 'selects.html' %}
+  {% include 'selects_editar.html' %}
+  {% include 'selects_final.html' %}
+  {% include 'submit.html' %}
+  {% include 'submit_carga_practicas_excel.html' %}
+  {% include 'actualizar.html' %}
+{% endblock %}
+
+
+<!-- se agregara solicitud vía js para cargar
+el formulario de edición, al inicio se mostrará
+solamente uno vacío y obtendremos el resto de la
+información vía js al dar click. Además falta agregar
+la parte de corrección del datatables-->
+
+<!-- ejemplo de url pasando id {% url "PagGestion:actualizar" v.id %} -->
+<!-- ejemplo pasando variable a un template. {% include 'toaster.html' with messages=messages %} -->
+<!-- {% include 'agenda_practica_actualizar.html' with id=v.pk %} -->

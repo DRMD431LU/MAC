@@ -1,0 +1,78 @@
+#acciones tr{
+  width: 100%;
+  text-align: center;
+}
+#acciones{
+  width: 100%;
+}
+.dicon{
+  font-size:186px !important;
+  display: inline-block;
+  position: relative;
+}
+.aicon{
+  text-align: center;
+  position: relative;
+  display: block;
+  font-size: 20px;
+  text-decoration: none !important;
+  color: #23527c;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.aicon:hover{
+  color:#CEA510;
+  -webkit-text-shadow: 2px 7px 15px rgba(0,33,71,0.4);
+  -moz-text-shadow: 2px 7px 15px rgba(0,33,71,0.4);
+  text-shadow: 2px 7px 15px rgba(0,33,71,0.4);
+}
+
+#acciones td{
+  width: 150px;
+  height: 170px;
+}
+
+@media (max-width: 991px){
+  .dicon{
+    font-size:126px !important;
+  }
+  .aicon{
+    font-size: 15px;
+  }
+  #acciones td{
+    height: 120px;
+  }
+}
+
+@media (max-width: 640px){
+  .dicon{
+    font-size:66px !important;
+  }
+  .aicon{
+    font-size: 15px !important;
+  }
+  #acciones td{
+    height: 80px;
+  }
+
+}
+
+@media (max-width: 440px){
+  .dicon{
+    font-size:46px !important;
+  }
+  .aicon{
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 301px){
+  .dicon{
+    font-size:32px !important;
+  }
+  .aicon{
+    font-size: 7px !important;
+  }
+}

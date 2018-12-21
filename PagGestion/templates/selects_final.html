@@ -1,0 +1,57 @@
+<script>
+///script de los dropdowns
+
+
+       $("#id_fecha_practica_final").bind("change paste keyup",getHorasFinal);
+       $("#id_hora_ini_final").on("change", getHoraFinFinal);
+
+
+       var fechaFinal;
+       function getHorasFinal() {
+
+         if($("#id_fecha_practica_final").val()!=="" && fechaFinal!=$("#id_fecha_practica_final").val() && !($("#id_fecha_practica_final").val()===undefined)){
+           fechaFinal = $("#id_fecha_practica_final").val();
+             $.ajax({
+                 type: "GET",
+                 url: "{% url 'PagGestion:get_horas' %}",
+                 data: {
+                   "fecha":fecha,
+                 },
+                 success:function (data) {
+                      $("#id_hora_ini_final").html(data.horas);
+                 },
+                 error:function (request,status,error) {
+                     var err=request.responseJSON;
+                     $("#id_hora_ini_final").html(err.error_hora);
+                     $("#id_hora_ini_final").html(data.horas);
+                     toastr.error("Sin Horarios Disponibles.","Error");
+                 },
+             });
+          }
+      }
+
+      function getHoraFinFinal() {
+          var horaIni = $("#id_hora_ini_final").val();
+          var fecha=$("#id_fecha_practica_final").val();
+          $("#id_hora_fin_final").html("");
+          if (horaIni) {
+              // Eliminamos las opciones anteriores del select//
+              var request = $.ajax({
+                  type: "GET",
+                  url: "{% url 'PagGestion:get_horaFin' %}",
+                  data: {
+                      "id_hora_ini": horaIni,
+                      "id_fecha_practica":fecha,
+                  },
+                  success:function (response) {
+                    $("#id_hora_fin_final").html(response.horasFin);
+                    $("#id_hora_fin_final").trigger("change");
+                  }
+              });
+          } else {
+              $("#id_hora_fin_final").html("<option value='' selected='selected'>(Selecciona el Horario de Fin de la Pŕactica)</option>");
+              $("#id_hora_fin_final").trigger("change");
+          }
+          return response;
+      }
+</script>
