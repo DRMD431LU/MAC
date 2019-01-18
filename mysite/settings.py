@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'ixvw7p_-#3wffip1ksvd-8zi-c*=*t4i()u^l5izoo-3gdxkn&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     #apps
     'PagGestion',
     #secondary apps
-    'apps.cuestionario_lab',
-    'apps.cuestionario_pract',
+    'apps.cuestionarios',
+    #'apps.cuestionario_pract',
     #Third party library
     'django_gulp',
     'widget_tweaks',

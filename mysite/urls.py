@@ -20,7 +20,7 @@ from django.conf import settings
 
 
 # from mysite.views import hola,fecha_actual,encuesta_profesores,encuesta_alumnos,asignacion
-from mysite.views import index
+from .views import index
 
 admin.autodiscover()
 
@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^sgc/',include('PagGestion.urls',namespace="PagGestion")),
     url(r'^$', index,name="home"),
     #url(r'^chaining/', include('smart_selects.urls')),
-    url(r'^lab/', include('apps.cuestionario_lab.urls',namespace="lab",app_name="cuestionario_lab")),
-    url(r'^pract/', include('apps.cuestionario_pract.urls',namespace="pract",app_name="cuestionario_pract")),
+    url(r'^cuestionarios/', include('apps.cuestionarios.urls',namespace="cuestion",app_name="cuestionarios")),
+    #url(r'^pract/', include('apps.cuestionarios.urls',namespace="pract",app_name="cuestionarios")),
     url(r'^index/', index, name='index'),
 ]

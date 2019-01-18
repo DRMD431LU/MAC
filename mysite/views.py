@@ -18,13 +18,12 @@ def encuesta_profesores(request):
     contenido =Encuesta_Profesor.objects.all()
     return render_to_response('encuesta_profesores.html', {"results":contenido})
 def encuesta_alumnos(request):
-        contenido =Encuesta_Alumno.objects.all()
-        return render_to_response('encuesta_alumnos.html', {"results":contenido})
+    contenido =Encuesta_Alumno.objects.all()
+    return render_to_response('encuesta_alumnos.html', {"results":contenido})
 def asignacion(request):
     contenido=Profesor.objects.all()
     return render_to_response('asignacion_profesor.html', {"results":contenido})
 
 def index(request):
-    #mandar a john este mensaje
-        messages.success(request,"Hola, Bienvenidos al SGC UTLA.")
-        return render(request,'index.html')
+    messages.success(request,"Hola, Bienvenidos al SGC UTLA.")
+    return render(request,'index.html')

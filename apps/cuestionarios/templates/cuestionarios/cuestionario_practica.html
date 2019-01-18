@@ -8,7 +8,13 @@
 <div class="white-box">
 	<!-- todo esta en una tabla? jaja no entiendo el template xd-->
 	<table>
+<form method="post">
+	{%csrf_token%}
 		<tbody>
+		
+		<tr><td width="5%"></td><td colspan="1" width="90%" align="center"><img src="{%static 'imagenes/encaen2.jpg'%}"  width="50%"></td><td width="5%"></td></tr>
+		<tr><td width="5%"></td><td width="30%" align="center"><p>CALIDAD EN EL SERVICIO</p><p align="right">Folio<input type="text" placeholder="Folio" required="" name="folio"></p></td><td width="5%"></td>
+		</tr>
 			<!--  vamo a comentar la imagen
 			<tr>
 				<td width="5%"></td><td colspan="2" width="90%" align="center"><img src="{%static 'imagenes/encaen.jpg'%}" width="100%"></td><td width="5%"></td>
@@ -22,8 +28,10 @@
 			<tr>
 				<td></td>
 				<td colspan="2">Laboratorio<br>
-					<select style="width:100%" size="0" name="laboratorio">
-						<option selected><!-- aqui va el django template tag --></option>
+					<select style="width:100%" size="0" name="id_laboratorio_horario">
+						{%for lab_hora in form.id_laboratorio_horario%}
+						<option selected>{{lab_hora}}<!-- aqui va el django template tag --></option>
+						{%endfor%}
 					</select><!--se supone que esto tiene comportamiento dinamico -->
 				</td>
 				<td></td>
@@ -31,8 +39,10 @@
 			<tr>
 				<td></td>
 				<td colspan="2">Nombre del Alumno<br>
-					<select style="width:100%" size="0" name="profesor">
-						<option selected><!-- aqui va el django template tag --></option>
+					<select style="width:100%" size="0" name="id_alumno">
+						{%for alumno in id_alumno%}
+						<option selected>{{alumno}}<!-- aqui va el django template tag --></option>
+						{%endfor%}
 					</select></td>
 					<td></td>
 			</tr>
@@ -203,7 +213,7 @@
 					<tr>
 						<td></td>
 						<td align="center"><br><br>
-							<form method="get" action="#">
+							
 								<input type="submit" class="btn" value="Terminar Encuesta" />
 							</form>
 						</td>

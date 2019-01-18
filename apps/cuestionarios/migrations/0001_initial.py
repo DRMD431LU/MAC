@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
             name='Alumno_Inscrito',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('id_alumno', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Alumno', verbose_name='Alumno')),
+                ('id_alumno', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Alumno', verbose_name='Alumno')),
             ],
         ),
         migrations.CreateModel(
@@ -108,7 +108,7 @@ class Migration(migrations.Migration):
                 ('folio', models.CharField(max_length=100, primary_key=True, serialize=False)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('observaciones', models.CharField(max_length=500)),
-                ('id_alumno', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Alumno')),
+                ('id_alumno', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Alumno')),
             ],
         ),
         migrations.CreateModel(
@@ -124,7 +124,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('fecha', models.DateTimeField()),
-                ('id_clase_tipo', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Clase_Tipo', verbose_name='Tipo de Límite')),
+                ('id_clase_tipo', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Clase_Tipo', verbose_name='Tipo de Límite')),
             ],
             options={
                 'verbose_name': 'Fechas Límite',
@@ -150,7 +150,7 @@ class Migration(migrations.Migration):
             name='Grupos_Carrera',
             fields=[
                 ('clave', models.CharField(max_length=20, primary_key=True, serialize=False)),
-                ('id_carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Carrera', verbose_name='Carrera')),
+                ('id_carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Carrera', verbose_name='Carrera')),
             ],
         ),
         migrations.CreateModel(
@@ -164,9 +164,9 @@ class Migration(migrations.Migration):
             name='Horarios_Clase',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('hora_fin', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='hora_fin', to='PagGestion.Horario', verbose_name='Hora Fin')),
-                ('hora_ini', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='hora_ini', to='PagGestion.Horario', verbose_name='Hora Inicio')),
-                ('id_dias', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Dias', verbose_name='Día')),
+                ('hora_fin', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='hora_fin', to='cuestionarios.Horario', verbose_name='Hora Fin')),
+                ('hora_ini', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='hora_ini', to='cuestionarios.Horario', verbose_name='Hora Inicio')),
+                ('id_dias', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Dias', verbose_name='Día')),
             ],
         ),
         migrations.CreateModel(
@@ -193,7 +193,7 @@ class Migration(migrations.Migration):
                 ('telefono_casa', models.CharField(max_length=14)),
                 ('telefono_oficina', models.CharField(max_length=14)),
                 ('created_at', models.DateTimeField(blank=True, default=datetime.datetime.now, verbose_name='Creado el')),
-                ('id_carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Carrera', verbose_name='Carrera')),
+                ('id_carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Carrera', verbose_name='Carrera')),
             ],
             options={
                 'verbose_name': 'Jefe de Sección',
@@ -206,7 +206,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=200)),
                 ('aula', models.CharField(max_length=10)),
-                ('carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Carrera', verbose_name='Carrera')),
+                ('carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Carrera', verbose_name='Carrera')),
             ],
         ),
         migrations.CreateModel(
@@ -226,7 +226,7 @@ class Migration(migrations.Migration):
                 ('telefono_casa', models.CharField(max_length=14)),
                 ('telefono_oficina', models.CharField(max_length=14)),
                 ('created_at', models.DateTimeField(blank=True, default=datetime.datetime.now, verbose_name='Creado el')),
-                ('id_carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Carrera', verbose_name='Carrera')),
+                ('id_carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Carrera', verbose_name='Carrera')),
             ],
             options={
                 'verbose_name': 'Laboratorista',
@@ -238,7 +238,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('clave', models.CharField(max_length=100, primary_key=True, serialize=False)),
                 ('nombre', models.CharField(max_length=100)),
-                ('id_carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Carrera', verbose_name='Carrera')),
+                ('id_carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Carrera', verbose_name='Carrera')),
             ],
         ),
         migrations.CreateModel(
@@ -265,8 +265,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('numero', models.IntegerField()),
                 ('nombre', models.CharField(max_length=100)),
-                ('materia_laboratorio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Materia_Laboratorio', verbose_name='Materia Laboratorio')),
-                ('predecesora', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Practica', verbose_name='Práctica Predecesora')),
+                ('materia_laboratorio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Materia_Laboratorio', verbose_name='Materia Laboratorio')),
+                ('predecesora', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Practica', verbose_name='Práctica Predecesora')),
             ],
             options={
                 'verbose_name': 'Práctica',
@@ -290,7 +290,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(blank=True, default=datetime.datetime.now, verbose_name='Creado el')),
                 ('telefono_casa', models.CharField(max_length=14)),
                 ('telefono_oficina', models.CharField(max_length=14)),
-                ('id_carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Carrera', verbose_name='Carrera')),
+                ('id_carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Carrera', verbose_name='Carrera')),
             ],
             options={
                 'verbose_name': 'Profesor',
@@ -303,8 +303,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('valor', models.CharField(max_length=20)),
                 ('porque', models.CharField(max_length=500)),
-                ('id_Encuesta_Alumno', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Encuesta_Alumno')),
-                ('id_pregunta', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Pregunta')),
+                ('id_Encuesta_Alumno', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Encuesta_Alumno')),
+                ('id_pregunta', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Pregunta')),
             ],
         ),
         migrations.CreateModel(
@@ -313,8 +313,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('valor', models.CharField(max_length=20)),
                 ('porque', models.CharField(max_length=500)),
-                ('id_Encuesta_Profesor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Encuesta_Profesor')),
-                ('id_pregunta', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Pregunta')),
+                ('id_Encuesta_Profesor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Encuesta_Profesor')),
+                ('id_pregunta', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Pregunta')),
             ],
         ),
         migrations.CreateModel(
@@ -328,7 +328,7 @@ class Migration(migrations.Migration):
                 ('telefono_casa', models.CharField(max_length=14)),
                 ('telefono_oficina', models.CharField(max_length=14)),
                 ('created_at', models.DateTimeField(blank=True, default=datetime.datetime.now, verbose_name='Creado el')),
-                ('id_carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Carrera', verbose_name='Carrera')),
+                ('id_carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Carrera', verbose_name='Carrera')),
             ],
             options={
                 'verbose_name': 'Secretario Técnico',
@@ -359,116 +359,116 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='pregunta',
             name='id_tipo_respuesta',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Tipo_Respuesta'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Tipo_Respuesta'),
         ),
         migrations.AddField(
             model_name='laboratorio_horario',
             name='id_clave_mat_lab',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Materia_Laboratorio', verbose_name='Clave Materia'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Materia_Laboratorio', verbose_name='Clave Materia'),
         ),
         migrations.AddField(
             model_name='laboratorio_horario',
             name='id_grupo',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Grupos_Carrera', verbose_name='Grupo'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Grupos_Carrera', verbose_name='Grupo'),
         ),
         migrations.AddField(
             model_name='laboratorio_horario',
             name='periodo',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Periodo', verbose_name='Periodo'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Periodo', verbose_name='Periodo'),
         ),
         migrations.AddField(
             model_name='laboratorio_horario',
             name='rfc',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Profesor', verbose_name='Profesor'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Profesor', verbose_name='Profesor'),
         ),
         migrations.AddField(
             model_name='jefe_materias',
             name='id_jefe',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.JefeSeccion', verbose_name='Jefe de Sección'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.JefeSeccion', verbose_name='Jefe de Sección'),
         ),
         migrations.AddField(
             model_name='jefe_materias',
             name='id_materia',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Materia_Laboratorio', verbose_name='Materia Laboratorio'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Materia_Laboratorio', verbose_name='Materia Laboratorio'),
         ),
         migrations.AddField(
             model_name='jefe_laboratorios',
             name='id_jefe',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.JefeSeccion', verbose_name='Jefe de Sección'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.JefeSeccion', verbose_name='Jefe de Sección'),
         ),
         migrations.AddField(
             model_name='jefe_laboratorios',
             name='id_laboratorio',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Laboratorio', verbose_name='Laboratorio'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Laboratorio', verbose_name='Laboratorio'),
         ),
         migrations.AddField(
             model_name='horarios_clase',
             name='laboratorio_horario',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Laboratorio_Horario', verbose_name='Horario Laboratorio'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Laboratorio_Horario', verbose_name='Horario Laboratorio'),
         ),
         migrations.AddField(
             model_name='grupos_carrera',
             name='id_turno',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Turno', verbose_name='Turno'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Turno', verbose_name='Turno'),
         ),
         migrations.AddField(
             model_name='fecha_limite',
             name='id_tipo',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Tipo_Limite', verbose_name='Límite para'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Tipo_Limite', verbose_name='Límite para'),
         ),
         migrations.AddField(
             model_name='encuesta_profesor',
             name='id_laboratorio_horario',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Laboratorio_Horario'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Laboratorio_Horario'),
         ),
         migrations.AddField(
             model_name='encuesta_profesor',
             name='id_laboratorista',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Laboratorista'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Laboratorista'),
         ),
         migrations.AddField(
             model_name='encuesta_profesor',
             name='id_practica',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Practica'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Practica'),
         ),
         migrations.AddField(
             model_name='encuesta_alumno',
             name='id_laboratorio_horario',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Laboratorio_Horario'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Laboratorio_Horario'),
         ),
         migrations.AddField(
             model_name='alumno_inscrito',
             name='id_laboratorio_horario',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Laboratorio_Horario', verbose_name='Horario Laboratorio'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Laboratorio_Horario', verbose_name='Horario Laboratorio'),
         ),
         migrations.AddField(
             model_name='alumno',
             name='id_carrera',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Carrera', verbose_name='Carrera'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Carrera', verbose_name='Carrera'),
         ),
         migrations.AddField(
             model_name='alumno',
             name='id_generacion',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Generacion', verbose_name='Generación'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Generacion', verbose_name='Generación'),
         ),
         migrations.AddField(
             model_name='agenda_practica',
             name='laboratorio',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Laboratorio', verbose_name='Laboratorio'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Laboratorio', verbose_name='Laboratorio'),
         ),
         migrations.AddField(
             model_name='agenda_practica',
             name='laboratorio_horario',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Laboratorio_Horario', verbose_name='Laboratorio Horario'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Laboratorio_Horario', verbose_name='Laboratorio Horario'),
         ),
         migrations.AddField(
             model_name='agenda_practica',
             name='practica',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Practica', verbose_name='Práctica'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Practica', verbose_name='Práctica'),
         ),
         migrations.AddField(
             model_name='agenda_practica',
             name='rfc',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PagGestion.Profesor', verbose_name='Profesor'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cuestionarios.Profesor', verbose_name='Profesor'),
         ),
     ]

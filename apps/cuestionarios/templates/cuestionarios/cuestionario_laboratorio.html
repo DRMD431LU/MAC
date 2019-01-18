@@ -9,31 +9,45 @@
 <div class="white-box">
 	<table>
 		<tbody>
-			<!-- comentamos la imagen -->
-			<!-- 
+			<form method="post">
+				{% csrf_token %}
+			<tr><td width="5%"></td><td colspan="2" width="90%" align="center"><img src="{%static "imagenes/encaen.jpg"%}" width="100%"></td><td width="5%"></td>
+			</tr>
+			<tr><td width="5%"></td><td width="30%"></td>
+				<td align="center" width="30%">Fecha:<input type="date" placeholder="dd/mm/aa" name="fecha"></td>
+			</tr>
 			<tr>
 				<td width="5%"></td>
-				<td colspan="1" width="90%" align="left"><img src="{%static "imagenes/encaen2.jpg"%}"  width="50%"></td>
-				<td width="5%"></td>
-			</tr> -->
-			<tr>
-				<td width="5%"></td>
-				<td width="30%" align="center"><p>CALIDAD EN EL SERVICIO</p><p align="right">Folio
-					<input type="text" placeholder="Folio"></p></td><td width="5%">
+				<td width="30%" align="center">
+					<p>CALIDAD EN EL SERVICIO</p>
+				</td>
+				<td>
+					<p align="right">Folio
+					<input align="right" type="text" placeholder="Folio" name="folio"></p></td><td width="5%">
 				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td colspan="1">Laboratorio<br>
-					<select style="width:75%" size="0" name="laboratorio"><option selected value="">Laboratorio</option><option value="1">Laboratorio de Fisica</option><option value="1">Laboratorio de Metales</option><option value="1">Laboratorio de Plasticos</option></select>Fecha:<input type="date" placeholder="dd/mm/aa" name="fecha">
+					<select style="width:75%" size="0" name="laboratorio">
+						<option selected value="">Laboratorio</option>
+						<option value="1">Laboratorio de Fisica</option>
+						<option value="1">Laboratorio de Metales</option>
+						<option value="1">Laboratorio de Plasticos</option></select>
+						Fecha:<input type="date" placeholder="dd/mm/aa" name="fecha">
 				</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td></td><td colspan="2">Nombre del Profesor<br><select style="width:75%" size="0" name="profesor"><option selected value="">Profesor</option><option value="1">Guido Alarcon Mauricio Francisco</option><option value="1">Carmona Zedillo Alma Viridiana</option><option value="1">Perez Ramirez Jose Juan</option></select></td>
+				<td></td>
+				<td colspan="2">Nombre del Profesor<br><select style="width:75%" size="0" name="profesor"><option selected value="">Profesor</option><option value="1">Guido Alarcon Mauricio Francisco</option><option value="1">Carmona Zedillo Alma Viridiana</option><option value="1">Perez Ramirez Jose Juan</option></select></td>
 			</tr>
 			<tr>
-				<td></td><td colspan="1">Numero de la sesión de la Práctica: <input type="text" placeholder="Sesion" size="60" name="prac">  Horario: <input type="time" value="--:-- ----" name="horario">Grupo:<input type="text" placeholder="Grupo" name="grupo"></td><td></td>
+				<td></td>
+				<td >Numero de la sesión de la Práctica: <input type="text" placeholder="Sesion" size="60" name="prac">  
+					Horario: <input type="time" value="--:-- ----" name="horario">
+					Grupo:<input type="text" placeholder="Grupo" name="grupo">
+				</td>
 			</tr>
 			<tr><td width="5%"></td><td width="30%" colspan="1">Nombre de la sesión de la Práctica: <input type="text" placeholder="Nombre Practica" size="70" name="pracnom"></td><td align="right"></td>
 			</tr>
@@ -85,7 +99,7 @@
 						<td></td><td colspan="2"><font size="2">Nota: El profesor podrá evaluar el servicio en un solo formato si hubo varias brigadas o equipos en un grupo.<br>*Si su evaluacion es de MALO, diganos el motivo</font></td>
 					</tr>
 					<tr>
-						<td></td><td align="center"><br><br><form method="get" action="#">
+						<td></td><td align="center"><br><br>
 
 							<input type="submit" class="btn" value="Terminar Encuesta" />
 
