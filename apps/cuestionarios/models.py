@@ -127,11 +127,16 @@ class Practica(models.Model):
 class Encuesta_Profesor(models.Model):
 	folio = models.CharField(max_length=100, primary_key=True)
 	id_laboratorio_horario = models.ForeignKey(Laboratorio_Horario, on_delete=models.CASCADE)
-	id_laboratorista=models.ForeignKey(Laboratorista, on_delete=models.CASCADE)
+	id_profesor=models.ForeignKey(Profesor, on_delete=models.CASCADE)
 	id_practica = models.ForeignKey(Practica, on_delete=models.CASCADE)
 	created_at=models.DateTimeField(auto_now_add=True)
 	observaciones=models.CharField(max_length=500)
+	def __str__(self):
+		return self.folio
 
+class Respuestas(models.Model):
+
+	pass
 
 class Tipo_Respuesta(models.Model):
 	valor=models.CharField(max_length=30)
@@ -139,7 +144,9 @@ class Tipo_Respuesta(models.Model):
 
 class Pregunta(models.Model):
 	reactivo=models.CharField(max_length=300)
-	id_tipo_respuesta=models.ForeignKey(Tipo_Respuesta, on_delete=models.CASCADE)
+	sino=models.BooleanField()
+	porque=models.CharField
+	#id_tipo_respuesta=models.ForeignKey(Tipo_Respuesta, on_delete=models.CASCADE)
 
 
 class Respuesta_Alumno(models.Model):
