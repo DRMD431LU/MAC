@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render,render_to_response, get_object_or_404
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import CreateView
-from apps.cuestionarios.models import Encuesta_Profesor
+from apps.cuestionarios.models import EncuestaProfesor
 from .forms import PracticaForm
 
 # Create your views here.
+
+
 def cuestionario_laboratorio(request):
 	return render(request,"cuestionarios/cuestionario_laboratorio.html",{})
 # Create your views here.
@@ -12,7 +14,7 @@ def cuestionario_practica(request):
 	return render(request,"cuestionarios/cuestionario_practica.html",{})
 
 class CuestionarioCreate(CreateView):
-	model=Encuesta_Profesor
+	model=EncuestaProfesor
 	template_name='cuestionarios/cuestionario_practica.html'
 	form_class = PracticaForm
 	#second_form_class = LaboratorioForm

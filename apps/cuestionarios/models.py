@@ -124,40 +124,55 @@ class Practica(models.Model):
 		return self.materia_laboratorio.nombre+"-"+"#"+str(self.numero)+" "+self.nombre
 
 
-class Encuesta_Profesor(models.Model):
+class EncuestaNombre(models.Model): #Evaluation scheme
+	valor=models.CharField(max_length=30)
+	def __str__(self):
+		return self.valor
+
+class EncuestaProfesor(models.Model): #evaluation
 	folio = models.CharField(max_length=100, primary_key=True)
 	id_laboratorio_horario = models.ForeignKey(Laboratorio_Horario, on_delete=models.CASCADE)
 	id_profesor=models.ForeignKey(Profesor, on_delete=models.CASCADE)
 	id_practica = models.ForeignKey(Practica, on_delete=models.CASCADE)
 	created_at=models.DateTimeField(auto_now_add=True)
 	observaciones=models.CharField(max_length=500)
+	cuestionario = models.ForeignKey(EncuestaNombre)
 	def __str__(self):
 		return self.folio
 
-class Respuestas(models.Model):
-
-	pass
-
-class Tipo_Respuesta(models.Model):
-	valor=models.CharField(max_length=30)
-
-
-class Pregunta(models.Model):
+class EncuestaPregunta(models.Model): #evaluation question
 	reactivo=models.CharField(max_length=300)
-	sino=models.BooleanField()
-	porque=models.CharField
-	#id_tipo_respuesta=models.ForeignKey(Tipo_Respuesta, on_delete=models.CASCADE)
+	cuestionario=models.ForeignKey(EncuestaNombre)
+	def __str__(self):
+		return self.reactivo
 
+class EncuestaRespuesta(models.Model): #evaluation answer
+	encuesta = models.ForeignKey(EncuestaProfesor)
+	reactivo = models.ForeignKey(EncuestaPregunta)
+	respuesta = models.CharField(max_length=150)
+	def __str__(self):
+		return self.respuesta
+RATING_CHOICES = ((0, u"Good"), (1, u"Bad"), (2, u"Dunno"),)
 
-class Respuesta_Alumno(models.Model):
-	id_Encuesta_Alumno=models.ForeignKey(Encuesta_Alumno, on_delete=models.CASCADE)
-	id_pregunta=models.ForeignKey(Pregunta, on_delete=models.CASCADE)
-	valor=models.CharField(max_length=20)
-	porque=models.CharField(max_length=500)
+class EvaluationScheme(models.Model):
+    title = models.CharField(max_length=200)
 
+class Evaluation(models.Model):
+    doctor = models.CharField(max_length=200)
+    agency = models.CharField(max_length=200)
+    scheme = models.ForeignKey(EvaluationScheme)
 
+class EvaluationQuestion(models.Model):
+    question = models.CharField(max_length=200)
+    evaluation = models.ForeignKey(EvaluationScheme)
 
+    def __unicode__(self):
+        return self.question
 
+class EvaluationAnswer(models.Model):
+    evaluation = models.ForeignKey(Evaluation)
+    question = models.ForeignKey(EvaluationQuestion)
+    answer = models.SmallIntegerField(choices=RATING_CHOICES)
 
 '''
 
