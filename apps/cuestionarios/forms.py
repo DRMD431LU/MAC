@@ -1,31 +1,55 @@
 from django import forms
-from .models import EncuestaProfesor
+from .models import EncuestaProfesor, RespuestaProfesor
 from django.utils.translation import ugettext_lazy as _
+
+
 class PracticaForm(forms.ModelForm):
 
-	class Meta : 
-		model = EncuestaProfesor
-		fields = '__all__'
-		labels={
-		"folio":_("Folio"),
-		"id_laboratorio_horario":"Laboratorio", 
-		"id_profesor":"Alumno",
-		"id_practica":"Número de práctica",
-		"observaciones":"Observaciones", 
-		}
-		help_texts = {'folio': _('Some useful help text.'),}
-		error_messages = {'folio': {'max_length': _("This writer's name is too long."),
-		},
-			}
-		widgets={
-			'folio': forms.TextInput(attrs={'class':'form-control mr-auto ml-auto' ,'placeholder':'Folio' }),
-            'id_laboratorio_horario':forms.Select(attrs={'class':'form-control'}),
-            'id_profesor': forms.Select(attrs={'class':'form-control'}),
-            'id_practica': forms.Select(attrs={'class':'form-control'}),
-            'observaciones':forms.Textarea(attrs={'class':'form-control mr-auto ml-auto'}),
-		}
+    class Meta:
+        model = EncuestaProfesor
+        fields = '__all__'
+
+        widgets = {
+            # 'folio': forms.TextInput(attrs={
+            #     'class': 'form-control',
+            #     'placeholder': 'Folio'}),
+            'id_laboratorio': forms.Select(attrs={'class': 'form-control'}),
+            'id_profesor': forms.Select(attrs={'class': 'form-control'}),
+            'id_practica': forms.Select(attrs={'class': 'form-control'}),
+            'observaciones': forms.Textarea(attrs={
+                'class': 'form-control'}),
+        }
+
 
 class PreguntasForm(forms.ModelForm):
-	class Meta:
-		pass
-		fields = '__all__'
+    class Meta:
+        model = RespuestaProfesor
+        fields = '__all__'
+        widgets = {
+            'servicio' : forms.Select(attrs={
+                'class': 'form-control',}),
+            'cumplio_objetivo' : forms.Select(attrs={
+                'class': 'form-control',}),
+            'id_laboratorista' : forms.Select(attrs={
+                'class': 'form-control',}),
+            'apertura_oportuna' : forms.Select(attrs={
+                'class': 'form-control',}),
+            'apertura_porque' : forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': '¿Por qué?'}),
+            'permanencia_enpractica' :forms.Select(attrs={
+                'class': 'form-control',}),
+            'permanencia_porque' : forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': '¿Por qué?'}),
+            'colaboracion_practica' :forms.Select(attrs={
+                'class': 'form-control',}),
+            'colaboracion_porque' : forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': '¿Por qué?'}),
+            'entrega_equipo' :forms.Select(attrs={
+                'class': 'form-control',}),
+            'entrega_porque' : forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': '¿Por qué?'}),
+        }

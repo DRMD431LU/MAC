@@ -3,5 +3,7 @@ from .views import cuestionario_laboratorio,cuestionario_practica,CuestionarioCr
 
 urlpatterns = [
 		url(r'laboratorio',cuestionario_laboratorio,name="cuestionario_laboratorio"),
-		url(r'practica',CuestionarioCreate.as_view(),name="cuestionario_practica")
+		url(r'practica',CuestionarioCreate.as_view(),name="cuestionario_practica"),
+		
+
 ]	

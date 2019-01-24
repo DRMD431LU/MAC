@@ -116,6 +116,12 @@ class Laboratorista(models.Model):
 
     def __str__(self):
         return self.nombre
+class Laboratorio(models.Model):
+	nombre = models.CharField(max_length=200)
+	aula=models.CharField(max_length=10)
+	carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE,verbose_name="Carrera")
+	def __str__(self):
+		return self.nombre+"-"+self.aula
 
 
 class Laboratorio_Horario(models.Model):
@@ -164,113 +170,61 @@ class Practica(models.Model):
             self.numero)+" "+self.nombre
 
 
-class EncuestaNombre(models.Model):  # Evaluation scheme
-    valor = models.CharField(max_length=30)
+# class EncuestaNombre(models.Model):  # Evaluation scheme
+#     valor = models.CharField(max_length=30)
 
-    def __str__(self):
-        return self.valor
+#     def __str__(self):
+#         return self.valor
 
 
 class EncuestaProfesor(models.Model):  # evaluation
     folio = models.CharField(max_length=100, primary_key=True)
-    id_laboratorio_horario = models.ForeignKey(
-    Laboratorio_Horario, on_delete=models.CASCADE)
+    id_laboratorio = models.ForeignKey(
+    Laboratorio, on_delete=models.CASCADE)
     id_profesor = models.ForeignKey(Profesor, on_delete=models.CASCADE)
     id_practica = models.ForeignKey(Practica, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     observaciones = models.CharField(max_length=500)
-    cuestionario = models.ForeignKey(EncuestaNombre)
+    #cuestionario = models.ForeignKey(EncuestaNombre, default=1, null=True)
 
     def __str__(self):
         return self.folio
 
-
-class EncuestaPregunta(models.Model):  # evaluation question
-    reactivo = models.CharField(max_length=300)
-    cuestionario = models.ForeignKey(EncuestaNombre)
-
-    def __str__(self):
-        return self.reactivo
-
-
-class EncuestaRespuesta(models.Model):  # evaluation answer
-    encuesta = models.ForeignKey(EncuestaProfesor)
-    reactivo = models.ForeignKey(EncuestaPregunta)
-    respuesta = models.CharField(max_length=150)
-
-    def __str__(self):
-        return self.respuesta
-
-
-'''
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+OPCIONES_BOOLEANAS = ((0,u"No"),(2,u"Sí"),)
+CALIFICACIONES_SERVICIO = ((u"a",u"Excelente"),(u"b",u"Bueno"),(u"c",u"Regular"),(u"d",u"Malo"))
+
+class RespuestaProfesor(models.Model):
+	encuesta=models.ForeignKey(EncuestaProfesor)
+	servicio = models.CharField(choices = CALIFICACIONES_SERVICIO,max_length=20)
+	cumplio_objetivo = models.CharField(choices = OPCIONES_BOOLEANAS,max_length = 4)
+	apertura_oportuna = models.CharField(choices = OPCIONES_BOOLEANAS,max_length = 4)
+	apertura_porque = models.CharField(max_length = 150)
+	id_laboratorista = models.ForeignKey(Laboratorista,on_delete=models.CASCADE)
+	permanencia_enpractica = models.CharField(choices = OPCIONES_BOOLEANAS,max_length = 4)
+	permanencia_porque = models.CharField(max_length = 150)
+	colaboracion_practica = models.CharField(choices = OPCIONES_BOOLEANAS,max_length = 4)
+	colaboracion_porque = models.CharField(max_length = 150)
+	entrega_equipo = models.CharField(choices = OPCIONES_BOOLEANAS,max_length = 4)
+	entrega_porque = models.CharField(max_length = 150)
+	
+	
+	
+
+# class EncuestaPregunta(models.Model):  # evaluation question
+#     reactivo = models.CharField(max_length=300)
+#     #cuestionario = models.ForeignKey(EncuestaNombre)
+
+#     def __str__(self):
+#         return self.reactivo
+
+
+# class EncuestaRespuesta(models.Model):  # evaluation answer
+#     encuesta = models.ForeignKey(EncuestaProfesor)
+#     reactivo = models.ForeignKey(EncuestaPregunta)
+#     respuesta = models.CharField(max_length=150)
+
+#     def __str__(self):
+#         return self.respuesta
 
 
 class Horario(models.Model):
@@ -304,12 +258,7 @@ class Plan(models.Model):
 #perfil de Laboratorista, Jefe de Sección, Secretario técnico, Administrador. mismo perfil que profesor.
 #para jefe de Sección agregar materias que pertenecen al jefe de sección y laboratorios como espacio físico que pertenecen a el.
 
-class Laboratorio(models.Model):
-	nombre = models.CharField(max_length=200)
-	aula=models.CharField(max_length=10)
-	carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE,verbose_name="Carrera")
-	def __str__(self):
-		return self.nombre+"-"+self.aula
+
 
 class Administrador(models.Model):
 	nombre = models.CharField(max_length=100)
@@ -319,6 +268,15 @@ class Administrador(models.Model):
 	telefono_casa=models.CharField(max_length=14)
 	telefono_oficina=models.CharField(max_length=14)
 	created_at=models.DateTimeField(default=datetime.now,blank=True,verbose_name="Creado el")
+
+
+
+
+
+
+
+'''
+
 
 	class Meta:
 		verbose_name="Administrador"
