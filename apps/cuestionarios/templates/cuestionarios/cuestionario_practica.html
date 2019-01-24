@@ -5,16 +5,55 @@
 <div class="container-fluid clearfix">
 	<form method="post">
 		{% csrf_token %}
+		<div class="row">
 			<img class="img-responsive" src="{%static "imagenes/encaen.jpg"%}">
-				<label><b><em>CALIDAD EN EL SERVICIO</em></b></label>
-			{{form.folio}}
-			{{form.id_profesor}}
-			{{form.id_laboratorio_horario}}
-			{{form.id_profesor}}
-			{{form.id_practica}}
-			{{form.observaciones}}
+		</div>
+		<div class="row">
+			<div class="col-sm-5"></div>
+
+			<div class="col-sm-6">
+				<label style="align:">CALIDAD EN EL SERVICIO</label>
+			</div>
+			<div class="col-sm-4"></div>
+		</div><br>
+			<div class="row">
+				<div class="col-sm-1"><label>Profesor</label></div>
+				<div class="col-sm-6">
+					{{form.id_profesor}}
+				</div>
+				<div class="col-sm-2">
+				</div>
+				<div class="col-sm-3 ">
+					{{form.folio}}
+				</div>
+			</div><br>
+			<div class="row">
+				<div class="col-sm-1"><label>Laboratorio</label></div>
+				<div class="col-sm-6">
+					{{form.id_laboratorio_horario}}
+				</div>
+				<div class="col-sm-2"><label>Número de Práctica</label></div>
+				<div class="col-sm-3">
+				{{form.id_practica}}
+				</div>
+			</div><br>
+			<div class="row"><div class="col-sm-5"></div>
+				<div class="col-sm-4"><label>Observaciones - Comentarios</label></div>
+				<div class="col-sm-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					{{form.observaciones}}
+				</div>
+			</div><br>
 	</form>
-	<button class="btn btn-sm btn-primary" type="submit">Terminar Encuesta </button>
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-6">
+			<button class="btn btn-block" type="submit">Terminar Encuesta </button>
+		</div>
+		<div class="col-sm-3"></div>
+	</div>
 </div>
 
 {%endblock%}

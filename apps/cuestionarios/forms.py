@@ -22,14 +22,10 @@ class PracticaForm(forms.ModelForm):
             'id_laboratorio_horario':forms.Select(attrs={'class':'form-control'}),
             'id_profesor': forms.Select(attrs={'class':'form-control'}),
             'id_practica': forms.Select(attrs={'class':'form-control'}),
-            'observaciones':forms.Textarea(attrs={'class':'form-control'}),
+            'observaciones':forms.Textarea(attrs={'class':'form-control mr-auto ml-auto'}),
 		}
-		
 
-
-class EncuestaProfesor(forms.ModelForm):
-	class Meta :
+class PreguntasForm(forms.ModelForm):
+	class Meta:
 		pass
-		fields =[
-
-		]
+		fields = '__all__'

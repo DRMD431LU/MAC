@@ -7,172 +7,200 @@ from datetime import datetime
 
 ''' here goes my own data model'''
 
+
 class Generacion(models.Model):
-	valor=models.IntegerField(verbose_name="Generación")
-	def __str__(self):
-		return str(self.valor)
+    valor = models.IntegerField(verbose_name="Generación")
+
+    def __str__(self):
+        return str(self.valor)
 
 
 class Turno(models.Model):
-	clave=models.IntegerField(primary_key=True)
-	valor = models.CharField(max_length=100,verbose_name="Turno")
-	def __str__(self):
-		return self.valor
+    clave = models.IntegerField(primary_key=True)
+    valor = models.CharField(max_length=100, verbose_name="Turno")
+
+    def __str__(self):
+        return self.valor
 
 
 class Periodo(models.Model):
-	nombre=models.CharField(max_length=15,primary_key=True)
-	activo=models.BooleanField(default=False)
-	def __str__(self):
-		return self.nombre+"-"+str(self.activo)
+    nombre = models.CharField(max_length=15, primary_key=True)
+    activo = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.nombre+"-"+str(self.activo)
 
 
 class Carrera(models.Model):
-	clave = models.CharField(max_length=100)
-	Nombre = models.CharField(max_length=100)
-	def __str__(self):
-		return self.Nombre
+    clave = models.CharField(max_length=100)
+    Nombre = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.Nombre
 
 
 class Grupos_Carrera(models.Model):
-    clave=models.CharField(max_length=20, primary_key=True)
-    id_carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE,verbose_name="Carrera")
-    id_turno=models.ForeignKey(Turno, on_delete=models.CASCADE,verbose_name="Turno")
+    clave = models.CharField(max_length=20, primary_key=True)
+    id_carrera = models.ForeignKey(
+        Carrera, on_delete=models.CASCADE, verbose_name="Carrera")
+    id_turno = models.ForeignKey(
+        Turno, on_delete=models.CASCADE, verbose_name="Turno")
+
     def __str__(self):
         return self.clave+"-"+self.id_carrera.Nombre
 
 
 class Materia_Laboratorio(models.Model):
-	clave = models.CharField(max_length=100, primary_key=True)
-	nombre = models.CharField(max_length=100)
-	id_carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE,verbose_name="Carrera")
-	def __str__(self):
-		return self.nombre
+    clave = models.CharField(max_length=100, primary_key=True)
+    nombre = models.CharField(max_length=100)
+    id_carrera = models.ForeignKey(
+        Carrera, on_delete=models.CASCADE, verbose_name="Carrera")
 
-class Alumno(models.Model):
-    num_cuenta = models.CharField(max_length=20,primary_key=True)
-    nombre = models.CharField(max_length=200)
-    fecha_nac=models.DateField()
-    email=models.EmailField(max_length=50,default="example@email.com")
-    id_generacion = models.ForeignKey(Generacion, on_delete=models.CASCADE,verbose_name="Generación")
-    id_carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE,verbose_name="Carrera")
-	#agregar teléfono pero no será editable
     def __str__(self):
         return self.nombre
 
+
+class Alumno(models.Model):
+    num_cuenta = models.CharField(max_length=20, primary_key=True)
+    nombre = models.CharField(max_length=200)
+    fecha_nac = models.DateField()
+    email = models.EmailField(max_length=50, default="example@email.com")
+    id_generacion = models.ForeignKey(
+        Generacion, on_delete=models.CASCADE, verbose_name="Generación")
+    id_carrera = models.ForeignKey(
+        Carrera, on_delete=models.CASCADE, verbose_name="Carrera")
+    # agregar teléfono pero no será editable
+
+    def __str__(self):
+        return self.nombre
+
+
 class Profesor(models.Model):
-	rfc = models.CharField(max_length=20, primary_key=True)
-	nombre = models.CharField(max_length=200)
-	num_empleado = models.IntegerField(verbose_name="Número de Empleado")
-	id_carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE,verbose_name="Carrera")
-	correo_e = models.EmailField(max_length=200,verbose_name="Correo Electrónico")
-	telefono_casa=models.CharField(max_length=14)
-	telefono_oficina=models.CharField(max_length=14)
-	created_at=models.DateTimeField(default=datetime.now,blank=True,verbose_name="Creado el")
+    rfc = models.CharField(max_length=20, primary_key=True)
+    nombre = models.CharField(max_length=200)
+    num_empleado = models.IntegerField(verbose_name="Número de Empleado")
+    id_carrera = models.ForeignKey(
+        Carrera, on_delete=models.CASCADE, verbose_name="Carrera")
+    correo_e = models.EmailField(
+        max_length=200, verbose_name="Correo Electrónico")
+    telefono_casa = models.CharField(max_length=14)
+    telefono_oficina = models.CharField(max_length=14)
+    created_at = models.DateTimeField(
+        default=datetime.now, blank=True, verbose_name="Creado el")
 
-	#telefono casa, oficina
+    # telefono casa, oficina
 
-	class Meta:
-		verbose_name="Profesor"
-		verbose_name_plural="Profesores"
+    class Meta:
+        verbose_name = "Profesor"
+        verbose_name_plural = "Profesores"
 
-	def __str__(self):
-		return self.nombre
+    def __str__(self):
+        return self.nombre
+
 
 class Laboratorista(models.Model):
-	nombre = models.CharField(max_length=100)
-	rfc = models.CharField(max_length=20)
-	num_empleado = models.IntegerField()
-	correo_e = models.CharField(max_length=200)
-	telefono_casa=models.CharField(max_length=14)
-	telefono_oficina=models.CharField(max_length=14)
-	id_carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE,verbose_name="Carrera")
-	created_at=models.DateTimeField(default=datetime.now,blank=True,verbose_name="Creado el")
+    nombre = models.CharField(max_length=100)
+    rfc = models.CharField(max_length=20)
+    num_empleado = models.IntegerField()
+    correo_e = models.CharField(max_length=200)
+    telefono_casa = models.CharField(max_length=14)
+    telefono_oficina = models.CharField(max_length=14)
+    id_carrera = models.ForeignKey(
+        Carrera, on_delete=models.CASCADE, verbose_name="Carrera")
+    created_at = models.DateTimeField(
+        default=datetime.now, blank=True, verbose_name="Creado el")
 
-	class Meta:
-		verbose_name="Laboratorista"
-		verbose_name_plural="Laboratoristas"
+    class Meta:
+        verbose_name = "Laboratorista"
+        verbose_name_plural = "Laboratoristas"
 
-	def __str__(self):
-		return self.nombre
+    def __str__(self):
+        return self.nombre
+
 
 class Laboratorio_Horario(models.Model):
-	rfc = models.ForeignKey(Profesor, on_delete=models.CASCADE,verbose_name="Profesor")
-	id_grupo=models.ForeignKey(Grupos_Carrera,on_delete=models.CASCADE,verbose_name="Grupo")
-	id_clave_mat_lab=models.ForeignKey(Materia_Laboratorio, on_delete=models.CASCADE,verbose_name="Clave Materia")
-	periodo=models.ForeignKey(Periodo,on_delete=models.CASCADE,verbose_name="Periodo")
-	def __str__(self):
-		return self.id_clave_mat_lab.nombre+"-"+self.rfc.nombre+"-"+str(self.id_grupo)
+    rfc = models.ForeignKey(
+        Profesor, on_delete=models.CASCADE, verbose_name="Profesor")
+    id_grupo = models.ForeignKey(
+        Grupos_Carrera, on_delete=models.CASCADE, verbose_name="Grupo")
+    id_clave_mat_lab = models.ForeignKey(
+        Materia_Laboratorio, on_delete=models.CASCADE,
+        verbose_name="Clave Materia")
+    periodo = models.ForeignKey(
+        Periodo, on_delete=models.CASCADE, verbose_name="Periodo")
+
+    def __str__(self):
+        return self.id_clave_mat_lab.nombre+"-"+self.rfc.nombre+"-"+str(
+            self.id_grupo)
+
 
 class Encuesta_Alumno(models.Model):
-	folio = models.CharField(max_length=100, primary_key=True)
-	id_alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE,null=True,blank=True)
-	id_laboratorio_horario=models.ForeignKey(Laboratorio_Horario,on_delete=models.CASCADE,null=True,blank=True)
-	created_at=models.DateTimeField(auto_now_add=True)
-	observaciones=models.CharField(max_length=500,null=True,blank=True)
+    folio = models.CharField(max_length=100, primary_key=True)
+    id_alumno = models.ForeignKey(
+        Alumno, on_delete=models.CASCADE, null=True, blank=True)
+    id_laboratorio_horario = models.ForeignKey(
+        Laboratorio_Horario, on_delete=models.CASCADE, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    observaciones = models.CharField(max_length=500, null=True, blank=True)
 
 
 class Practica(models.Model):
-	numero = models.IntegerField()
-	nombre = models.CharField(max_length=100)
-	materia_laboratorio=models.ForeignKey(Materia_Laboratorio,on_delete=models.CASCADE,verbose_name="Materia Laboratorio")
-	predecesora=models.ForeignKey('self',on_delete=models.CASCADE,verbose_name="Práctica Predecesora",blank=True,null=True)
-	class Meta:
-		verbose_name="Práctica"
-		verbose_name_plural="Prácticas"
-	def __str__(self):
-		return self.materia_laboratorio.nombre+"-"+"#"+str(self.numero)+" "+self.nombre
+    numero = models.IntegerField()
+    nombre = models.CharField(max_length=100)
+    materia_laboratorio = models.ForeignKey(
+        Materia_Laboratorio, on_delete=models.CASCADE,
+        verbose_name="Materia Laboratorio")
+    predecesora = models.ForeignKey(
+        'self', on_delete=models.CASCADE,
+        verbose_name="Práctica Predecesora",
+        blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Práctica"
+        verbose_name_plural = "Prácticas"
+
+    def __str__(self):
+        return self.materia_laboratorio.nombre+"-"+"#"+str(
+            self.numero)+" "+self.nombre
 
 
-class EncuestaNombre(models.Model): #Evaluation scheme
-	valor=models.CharField(max_length=30)
-	def __str__(self):
-		return self.valor
+class EncuestaNombre(models.Model):  # Evaluation scheme
+    valor = models.CharField(max_length=30)
 
-class EncuestaProfesor(models.Model): #evaluation
-	folio = models.CharField(max_length=100, primary_key=True)
-	id_laboratorio_horario = models.ForeignKey(Laboratorio_Horario, on_delete=models.CASCADE)
-	id_profesor=models.ForeignKey(Profesor, on_delete=models.CASCADE)
-	id_practica = models.ForeignKey(Practica, on_delete=models.CASCADE)
-	created_at=models.DateTimeField(auto_now_add=True)
-	observaciones=models.CharField(max_length=500)
-	cuestionario = models.ForeignKey(EncuestaNombre)
-	def __str__(self):
-		return self.folio
+    def __str__(self):
+        return self.valor
 
-class EncuestaPregunta(models.Model): #evaluation question
-	reactivo=models.CharField(max_length=300)
-	cuestionario=models.ForeignKey(EncuestaNombre)
-	def __str__(self):
-		return self.reactivo
 
-class EncuestaRespuesta(models.Model): #evaluation answer
-	encuesta = models.ForeignKey(EncuestaProfesor)
-	reactivo = models.ForeignKey(EncuestaPregunta)
-	respuesta = models.CharField(max_length=150)
-	def __str__(self):
-		return self.respuesta
-RATING_CHOICES = ((0, u"Good"), (1, u"Bad"), (2, u"Dunno"),)
+class EncuestaProfesor(models.Model):  # evaluation
+    folio = models.CharField(max_length=100, primary_key=True)
+    id_laboratorio_horario = models.ForeignKey(
+    Laboratorio_Horario, on_delete=models.CASCADE)
+    id_profesor = models.ForeignKey(Profesor, on_delete=models.CASCADE)
+    id_practica = models.ForeignKey(Practica, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    observaciones = models.CharField(max_length=500)
+    cuestionario = models.ForeignKey(EncuestaNombre)
 
-class EvaluationScheme(models.Model):
-    title = models.CharField(max_length=200)
+    def __str__(self):
+        return self.folio
 
-class Evaluation(models.Model):
-    doctor = models.CharField(max_length=200)
-    agency = models.CharField(max_length=200)
-    scheme = models.ForeignKey(EvaluationScheme)
 
-class EvaluationQuestion(models.Model):
-    question = models.CharField(max_length=200)
-    evaluation = models.ForeignKey(EvaluationScheme)
+class EncuestaPregunta(models.Model):  # evaluation question
+    reactivo = models.CharField(max_length=300)
+    cuestionario = models.ForeignKey(EncuestaNombre)
 
-    def __unicode__(self):
-        return self.question
+    def __str__(self):
+        return self.reactivo
 
-class EvaluationAnswer(models.Model):
-    evaluation = models.ForeignKey(Evaluation)
-    question = models.ForeignKey(EvaluationQuestion)
-    answer = models.SmallIntegerField(choices=RATING_CHOICES)
+
+class EncuestaRespuesta(models.Model):  # evaluation answer
+    encuesta = models.ForeignKey(EncuestaProfesor)
+    reactivo = models.ForeignKey(EncuestaPregunta)
+    respuesta = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.respuesta
+
 
 '''
 
