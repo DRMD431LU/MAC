@@ -116,12 +116,16 @@ class Laboratorista(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
 class Laboratorio(models.Model):
-	nombre = models.CharField(max_length=200)
-	aula=models.CharField(max_length=10)
-	carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE,verbose_name="Carrera")
-	def __str__(self):
-		return self.nombre+"-"+self.aula
+    nombre = models.CharField(max_length=200)
+    aula = models.CharField(max_length=10)
+    carrera = models.ForeignKey(
+        Carrera, on_delete=models.CASCADE, verbose_name="Carrera")
+
+    def __str__(self):
+        return self.nombre+"-"+self.aula
 
 
 class Laboratorio_Horario(models.Model):
@@ -180,35 +184,43 @@ class Practica(models.Model):
 class EncuestaProfesor(models.Model):  # evaluation
     folio = models.CharField(max_length=100, primary_key=True)
     id_laboratorio = models.ForeignKey(
-    Laboratorio, on_delete=models.CASCADE)
+        Laboratorio, on_delete=models.CASCADE)
     id_profesor = models.ForeignKey(Profesor, on_delete=models.CASCADE)
     id_practica = models.ForeignKey(Practica, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    observaciones = models.CharField(max_length=500)
+    observaciones = models.CharField(max_length=500,blank=True)
     #cuestionario = models.ForeignKey(EncuestaNombre, default=1, null=True)
 
     def __str__(self):
         return self.folio
 
-OPCIONES_BOOLEANAS = ((0,u"No"),(2,u"Sí"),)
-CALIFICACIONES_SERVICIO = ((u"a",u"Excelente"),(u"b",u"Bueno"),(u"c",u"Regular"),(u"d",u"Malo"))
+
+OPCIONES_BOOLEANAS = ((u"si", u"No"), (u"no", u"Sí"),)
+CALIFICACIONES_SERVICIO = (
+    (u"a", u"Excelente"), (u"b", u"Bueno"),
+    (u"c", u"Regular"), (u"d", u"Malo"))
+
 
 class RespuestaProfesor(models.Model):
-	encuesta=models.ForeignKey(EncuestaProfesor)
-	servicio = models.CharField(choices = CALIFICACIONES_SERVICIO,max_length=20)
-	cumplio_objetivo = models.CharField(choices = OPCIONES_BOOLEANAS,max_length = 4)
-	apertura_oportuna = models.CharField(choices = OPCIONES_BOOLEANAS,max_length = 4)
-	apertura_porque = models.CharField(max_length = 150)
-	id_laboratorista = models.ForeignKey(Laboratorista,on_delete=models.CASCADE)
-	permanencia_enpractica = models.CharField(choices = OPCIONES_BOOLEANAS,max_length = 4)
-	permanencia_porque = models.CharField(max_length = 150)
-	colaboracion_practica = models.CharField(choices = OPCIONES_BOOLEANAS,max_length = 4)
-	colaboracion_porque = models.CharField(max_length = 150)
-	entrega_equipo = models.CharField(choices = OPCIONES_BOOLEANAS,max_length = 4)
-	entrega_porque = models.CharField(max_length = 150)
-	
-	
-	
+    encuesta = models.ForeignKey(EncuestaProfesor,null=True,blank=True)
+    servicio = models.CharField(choices=CALIFICACIONES_SERVICIO, max_length=20)
+    cumplio_objetivo = models.CharField(
+        choices=OPCIONES_BOOLEANAS, max_length=4)
+    apertura_oportuna = models.CharField(
+        choices=OPCIONES_BOOLEANAS, max_length=4)
+    apertura_porque = models.CharField(max_length=150,null=True,blank=True)
+    id_laboratorista = models.ForeignKey(
+        Laboratorista, on_delete=models.CASCADE)
+    permanencia_enpractica = models.CharField(
+        choices=OPCIONES_BOOLEANAS, max_length=4)
+    permanencia_porque = models.CharField(max_length=150,null=True,blank=True)
+    colaboracion_practica = models.CharField(
+        choices=OPCIONES_BOOLEANAS, max_length=4)
+    colaboracion_porque = models.CharField(max_length=150,null=True,blank=True)
+    entrega_equipo = models.CharField(choices=OPCIONES_BOOLEANAS, max_length=4)
+    entrega_porque = models.CharField(max_length=150,null=True,blank=True)
+    
+
 
 # class EncuestaPregunta(models.Model):  # evaluation question
 #     reactivo = models.CharField(max_length=300)
@@ -228,51 +240,40 @@ class RespuestaProfesor(models.Model):
 
 
 class Horario(models.Model):
-	hora=models.TimeField()
-	def __str__(self):
-		return str(self.hora)
+    hora = models.TimeField()
+
+    def __str__(self):
+        return str(self.hora)
+
 
 class Dias(models.Model):
-	dias=models.CharField(max_length=20,verbose_name="Día")
-	class Meta:
-		verbose_name = 'Día'
-		verbose_name_plural = 'Días'
-	def __str__(self):
-		return str(self.dias)
+    dias = models.CharField(max_length=20, verbose_name="Día")
 
+    class Meta:
+        verbose_name = 'Día'
+        verbose_name_plural = 'Días'
+
+    def __str__(self):
+        return str(self.dias)
 
 
 class Plan(models.Model):
-    nombre=models.CharField(max_length=200,verbose_name="Plan")
+    nombre = models.CharField(max_length=200, verbose_name="Plan")
+
     class Meta:
         verbose_name = 'Plan'
         verbose_name_plural = 'Planes'
 
 
-
-
-
-
-
-
-#perfil de Laboratorista, Jefe de Sección, Secretario técnico, Administrador. mismo perfil que profesor.
-#para jefe de Sección agregar materias que pertenecen al jefe de sección y laboratorios como espacio físico que pertenecen a el.
-
-
-
 class Administrador(models.Model):
-	nombre = models.CharField(max_length=100)
-	rfc = models.CharField(max_length=20)
-	num_empleado = models.IntegerField()
-	correo_e = models.CharField(max_length=200)
-	telefono_casa=models.CharField(max_length=14)
-	telefono_oficina=models.CharField(max_length=14)
-	created_at=models.DateTimeField(default=datetime.now,blank=True,verbose_name="Creado el")
-
-
-
-
-
+    nombre = models.CharField(max_length=100)
+    rfc = models.CharField(max_length=20)
+    num_empleado = models.IntegerField()
+    correo_e = models.CharField(max_length=200)
+    telefono_casa = models.CharField(max_length=14)
+    telefono_oficina = models.CharField(max_length=14)
+    created_at = models.DateTimeField(
+        default=datetime.now, blank=True, verbose_name="Creado el")
 
 
 '''

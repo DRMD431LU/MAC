@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Encuesta de Laboratorio{% endblock %}
-{% block content %}
 {% load static %}
+{% block content %}
 <div class="container-fluid clearfix">
 	<form method="post">
 		{% csrf_token %}
@@ -18,23 +18,22 @@
 			<div class="row">
 			<div class="col-sm-2"><label>Profesor</label></div>
 				<div class="col-sm-4">
-					{{form.id_profesor}}
+					{{form2.id_profesor}}
 				</div>
 				<div class="col-sm-3">
 				</div>
 				<div class="col-sm-3">
-					<input class="form-control" type="text" name="folio" placeholder="Folio" id="folio_id">
-					<!--{{form.folio}}-->
+					<input class="form-control" type="text" name="folio" placeholder="Folio" id="folio_id" onchange="folios_valor()">
 				</div>
 			</div><br>
 			<div class="row">
 				<div class="col-sm-2"><label>Laboratorio</label></div>
 				<div class="col-sm-4">
-					{{form.id_laboratorio}}
+					{{form2.id_laboratorio}}
 				</div>
 				<div class="col-sm-3"><label> Número de Práctica</label></div>
 				<div class="col-sm-3">
-				{{form.id_practica}}
+				{{form2.id_practica}}
 				</div>
 			</div><br>
 
@@ -42,12 +41,12 @@
 			<div class="row">
 				<div class="col-sm-2"><label>1) El servicio que se dio fue:</label></div>
 				<div class="col-sm-4">
-					{{form2.servicio}}
+					{{form.servicio}}
 				</div>
 			
 				<div class="col-sm-3"><label>1b) El servicio cumplió con el objetivo de la sesión prácticas</label></div>
 				<div class="col-sm-3">
-					{{form2.cumplio_objetivo}}
+					{{form.cumplio_objetivo}}
 				</div>
 			</div><br> <br>
 
@@ -60,55 +59,55 @@
 			<div class="row">
 				<div class="col-sm-3"><label>Nombre del personal de apoyo</label></div>
 				<div class="col-sm-3">
-					{{form2.id_laboratorista}}
+					{{form.id_laboratorista}}
 				</div>
 			</div><br>
 
 			<div class="row">
 				<div class="col-sm-3"><label>2a) Se abrio oportunamente: </label> </div>
 				<div class="col-sm-3">
-					{{form2.apertura_oportuna }}
+					{{form.apertura_oportuna }}
 				</div>
 				<div class="col-sm-6">
-					{{form2.apertura_porque}}
+					{{form.apertura_porque}}
 				</div>
 			</div><br>
 			<div class="row">
 				<div class="col-sm-3"><label>2b) Permaneció en el área durante la sesión práctica: </label> </div>
 				<div class="col-sm-3">
-					{{form2.permanencia_enpractica}}
+					{{form.permanencia_enpractica}}
 				</div>
 				<div class="col-sm-6">
-					{{form2.permanencia_porque}}
+					{{form.permanencia_porque}}
 				</div>
 			</div> <br>
 			
 			<div class="row">
 				<div class="col-sm-3"><label>2c) Colaboró en la realización de la sesión práctica:</label></div>
 				<div class="col-sm-3">
-					{{form2.colaboracion_practica}}
+					{{form.colaboracion_practica}}
 				</div>
 				<div class="col-sm-6">
-					{{form2.colaboracion_porque}}
+					{{form.colaboracion_porque}}
 				</div>
 			</div><br>
 			<div class="row">
 				<div class="col-sm-3"><label>2d) Entregó los equipos y materiales oportunamente:</label></div>
 				<div class="col-sm-3">
-					{{form2.entrega_equipo}}
+					{{form.entrega_equipo}}
 				</div>
 				<div class="col-sm-6">
-					{{form2.entrega_porque}}
+					{{form.entrega_porque}}
 				</div>
 			</div>
 			<div class="row"><div class="col-sm-5"></div>
 				<div class="col-sm-4"><label>Observaciones - Comentarios</label></div>
 				<div class="col-sm-4"></div>
 			</div>
-			<input class="form-control" type="text" name="encuesta" value="folio_id" hidden>
+			<input class="form-control" type="text" name="encuesta" id="folio2_id">
 			<div class="row">
 				<div class="col-sm-12">
-					{{form.observaciones}}
+					{{form2.observaciones}}
 				</div>
 			</div>	
 	<div class="row">
