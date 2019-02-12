@@ -26,8 +26,9 @@ class PreguntasForm(forms.ModelForm):
         model = RespuestaProfesor
         fields = '__all__'
         widgets = {
+            'encuesta':forms.Select(attrs={'class':'form-control','id':'folio2_id'}),
             'servicio' : forms.Select(attrs={
-                'class': 'form-control',}),
+                'class': 'form-control', }),
             'cumplio_objetivo' : forms.Select(attrs={
                 'class': 'form-control',}),
             'id_laboratorista' : forms.Select(attrs={

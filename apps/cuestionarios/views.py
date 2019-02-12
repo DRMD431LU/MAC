@@ -33,10 +33,9 @@ class CuestionarioCreate(CreateView):
 		form = self.form_class(request.POST)
 		form2 =self.second_form_class(request.POST)
 		if form.is_valid() and form2.is_valid():
-			respuestaprofesor = form.save(commit=False)
-			print(respuestaprofesor)
-			respuestaprofesor.encuesta=form2.save()
-			respuestaprofesor.save()
+			encuestaprofesor = form.save(commit=False)
+			encuestaprofesor.encuesta=form2.save(commit=False)
+			encuestaprofesor.save()
 			return HttpResponseRedirect(self.get_success_url())
 		else: 
 			return self.render_to_response(self.get_context_data(form=form,form2=form2))
