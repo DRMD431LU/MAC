@@ -4,7 +4,7 @@ from django.apps import apps
 
 class RespuestaModelAdmin(admin.ModelAdmin):
     list_display = [
-    	"encuesta","servicio","cumplio_objetivo",
+    	"encuesta_id","servicio","cumplio_objetivo",
     	"apertura_oportuna","apertura_porque","id_laboratorista",
     	"permanencia_enpractica","permanencia_porque","colaboracion_practica",
     	"colaboracion_porque","entrega_equipo","entrega_porque"

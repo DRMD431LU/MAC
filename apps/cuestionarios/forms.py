@@ -1,24 +1,24 @@
 from django import forms
-from .models import EncuestaProfesor, RespuestaProfesor
+from .models import RespuestaProfesor
 from django.utils.translation import ugettext_lazy as _
 
 
-class PracticaForm(forms.ModelForm):
+# class PracticaForm(forms.ModelForm):
 
-    class Meta:
-        model = EncuestaProfesor
-        fields = '__all__'
+#     class Meta:
+#         model = EncuestaProfesor
+#         fields = '__all__'
 
-        widgets = {
-            # 'folio': forms.TextInput(attrs={
-            #     'class': 'form-control',
-            #     'placeholder': 'Folio'}),
-            'id_laboratorio': forms.Select(attrs={'class': 'form-control'}),
-            'id_profesor': forms.Select(attrs={'class': 'form-control'}),
-            'id_practica': forms.Select(attrs={'class': 'form-control'}),
-            'observaciones': forms.Textarea(attrs={
-                'class': 'form-control'}),
-        }
+#         widgets = {
+#             # 'folio': forms.TextInput(attrs={
+#             #     'class': 'form-control',
+#             #     'placeholder': 'Folio'}),
+#             'id_laboratorio': forms.Select(attrs={'class': 'form-control'}),
+#             'id_profesor': forms.Select(attrs={'class': 'form-control'}),
+#             'id_practica': forms.Select(attrs={'class': 'form-control'}),
+#             'observaciones': forms.Textarea(attrs={
+#                 'class': 'form-control'}),
+#         }
 
 
 class PreguntasForm(forms.ModelForm):
@@ -26,7 +26,7 @@ class PreguntasForm(forms.ModelForm):
         model = RespuestaProfesor
         fields = '__all__'
         widgets = {
-            'encuesta':forms.Select(attrs={'class':'form-control','id':'folio2_id'}),
+            'encuesta_id':forms.Select(attrs={'class':'form-control','id':'folio2_id'}),
             'servicio' : forms.Select(attrs={
                 'class': 'form-control', }),
             'cumplio_objetivo' : forms.Select(attrs={
@@ -53,4 +53,6 @@ class PreguntasForm(forms.ModelForm):
             'entrega_porque' : forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': '¿Por qué?'}),
+            'observaciones':forms.Textarea(attrs={
+                 'class': 'form-control'}),
         }

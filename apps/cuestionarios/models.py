@@ -181,18 +181,28 @@ class Practica(models.Model):
 #         return self.valor
 
 
-class EncuestaProfesor(models.Model):  # evaluation
-    folio = models.CharField(max_length=100, primary_key=True)
-    id_laboratorio = models.ForeignKey(
-        Laboratorio, on_delete=models.CASCADE)
-    id_profesor = models.ForeignKey(Profesor, on_delete=models.CASCADE)
-    id_practica = models.ForeignKey(Practica, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    observaciones = models.CharField(max_length=500,blank=True)
-    #cuestionario = models.ForeignKey(EncuestaNombre, default=1, null=True)
+# class EncuestaProfesor(models.Model):  # evaluation
+#     folio = models.CharField(max_length=100, primary_key=True)
+#     id_laboratorio = models.ForeignKey(
+#         Laboratorio, on_delete=models.CASCADE)
+#     id_profesor = models.ForeignKey(Profesor, on_delete=models.CASCADE)
+#     id_practica = models.ForeignKey(Practica, on_delete=models.CASCADE)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     
+#     #cuestionario = models.ForeignKey(EncuestaNombre, default=1, null=True)
 
-    def __str__(self):
-        return self.folio
+#     def __str__(self):
+#         return self.folio
+class Agenda_Practica(models.Model):
+    laboratorio_horario=models.ForeignKey(Laboratorio_Horario, on_delete=models.CASCADE,verbose_name="Laboratorio Horario")
+    practica=models.ForeignKey(Practica, on_delete=models.CASCADE,verbose_name="Práctica")
+    fecha=models.DateTimeField(default=datetime.now, blank=True)
+    hora_ini=models.TimeField(blank=True,default=datetime.now)
+    hora_fin=models.TimeField(blank=True,default=datetime.now)
+    reagendamiento=models.IntegerField(default=0)
+    laboratorio=models.ForeignKey(Laboratorio, on_delete=models.CASCADE,verbose_name="Laboratorio")
+    rfc = models.ForeignKey(Profesor, on_delete=models.CASCADE,verbose_name="Profesor")
+
 
 
 OPCIONES_BOOLEANAS = ((u"si", u"No"), (u"no", u"Sí"),)
@@ -202,7 +212,7 @@ CALIFICACIONES_SERVICIO = (
 
 
 class RespuestaProfesor(models.Model):
-    encuesta = models.ForeignKey(EncuestaProfesor,null=True,blank=True)
+    encuesta_id = models.ForeignKey(Agenda_Practica,null=True,blank=True)
     servicio = models.CharField(choices=CALIFICACIONES_SERVICIO, max_length=20)
     cumplio_objetivo = models.CharField(
         choices=OPCIONES_BOOLEANAS, max_length=4)
@@ -219,6 +229,7 @@ class RespuestaProfesor(models.Model):
     colaboracion_porque = models.CharField(max_length=150,null=True,blank=True)
     entrega_equipo = models.CharField(choices=OPCIONES_BOOLEANAS, max_length=4)
     entrega_porque = models.CharField(max_length=150,null=True,blank=True)
+    observaciones = models.CharField(max_length=500,blank=True)
     
 
 

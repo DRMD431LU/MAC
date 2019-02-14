@@ -25,7 +25,7 @@
 				<div class="col-sm-3">
 					<input class="form-control" type="text" name="folio" placeholder="Folio" id="folio_id" onchange="folios_valor()"> 
 					<!--{{form2.folio}}	 -->
-					{{form.encuesta}}
+					{{form.encuesta_id}}
 				</div>
 			</div><br>
 			<div class="row">
@@ -43,7 +43,9 @@
 			<div class="row">
 				<div class="col-sm-2"><label>1) El servicio que se dio fue:</label></div>
 				<div class="col-sm-4">
+					
 					{{form.servicio}}
+					}
 				</div>
 			
 				<div class="col-sm-3"><label>1b) El servicio cumplió con el objetivo de la sesión prácticas</label></div>
@@ -109,7 +111,7 @@
 			<!--<input class="form-control" type="text" name="encuesta" id="folio2_id"/> -->
 			<div class="row">
 				<div class="col-sm-12">
-					{{form2.observaciones}}
+					{{form.observaciones}}
 				</div>
 			</div>	
 	<div class="row">
